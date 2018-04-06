@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Cafe NTS</string>
+    <string name="fish_user_names">Firstname Lastname</string>
+    <string name="dialog_password_title">Input Password</string>
+    <string name="fish_hall_name">Bowling Hall</string>
 </resources>

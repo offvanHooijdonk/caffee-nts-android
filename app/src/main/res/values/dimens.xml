@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_user_size">40dp</dimen>
+    <dimen name="activity_margin_v">16dp</dimen>
+    <dimen name="activity_margin_h">16dp</dimen>
+    <dimen name="item_padding_h">16dp</dimen>
+    <dimen name="item_padding_v">16dp</dimen>
+    <dimen name="icon_image_padding">8dp</dimen>
+    <dimen name="card_outer_padding">4dp</dimen>
+</resources>

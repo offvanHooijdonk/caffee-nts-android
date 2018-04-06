@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_margin_v">16dp</dimen>
+    <dimen name="activity_margin_h">64dp</dimen>
+    <dimen name="item_padding_h">24dp</dimen>
+    <dimen name="item_padding_v">16dp</dimen>
+</resources>
