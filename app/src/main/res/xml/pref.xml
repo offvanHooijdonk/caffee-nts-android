@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="@string/pref_host_key"
+        android:title="@string/pref_host_title"
+        android:defaultValue="@string/pref_host_default_value"/>
+
+    <EditTextPreference
+        android:key="@string/pref_path_key"
+        android:title="@string/pref_path_title"
+        android:defaultValue="@string/pref_path_default_value"/>
+</PreferenceScreen>

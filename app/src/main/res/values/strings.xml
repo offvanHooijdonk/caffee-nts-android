@@ -3,4 +3,16 @@
     <string name="fish_user_names">Firstname Lastname</string>
     <string name="dialog_password_title">Input Password</string>
     <string name="fish_hall_name">Bowling Hall</string>
+
+    <string name="label_halls">Halls</string>
+
+    <string name="pref_host_key" translatable="false">pref_host</string>
+    <string name="pref_host_title">Endpoint host url</string>
+    <string name="pref_host_default_value" translatable="false">http://192.168.1.4:8080</string>
+    <string name="pref_path_key" translatable="false">pref_path</string>
+    <string name="pref_path_title">Root path for services</string>
+    <string name="pref_path_default_value" translatable="false">/cafe-nts-rest/rest/</string>
+    <string name="item_settings">Settings</string>
+    <string name="item_sign_off">Sign off</string>
+
 </resources>
