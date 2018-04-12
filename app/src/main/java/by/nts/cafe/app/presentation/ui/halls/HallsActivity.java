@@ -3,6 +3,7 @@ package by.nts.cafe.app.presentation.ui.halls;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,17 +20,16 @@ import butterknife.ButterKnife;
 import by.nts.cafe.app.CafeApp;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.HallModel;
-import by.nts.cafe.app.network.NetworkClientFactory;
+import by.nts.cafe.app.presentation.presenter.halls.HallsPresenter;
 import by.nts.cafe.app.presentation.ui.pref.PreferenceActivity;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
-public class HallsActivity extends AppCompatActivity implements HallsAdapter.OnHallClickListener {
+public class HallsActivity extends AppCompatActivity implements IHallsView, HallsAdapter.OnHallClickListener {
     @BindView(R.id.rvHalls)
     RecyclerView rvHalls;
+    @BindView(R.id.rflHalls)
+    SwipeRefreshLayout rflHalls;
 
-    private Disposable subscrHalls;
+    private HallsPresenter presenter;
 
     private HallsAdapter adapter;
     private List<HallModel> hallList = new ArrayList<>();
@@ -40,29 +40,22 @@ public class HallsActivity extends AppCompatActivity implements HallsAdapter.OnH
         setContentView(R.layout.activity_halls);
         ButterKnife.bind(this);
 
-        initTestData();
+        presenter = new HallsPresenter(this, getApplicationContext());
         adapter = new HallsAdapter(this, hallList, this);
         rvHalls.setAdapter(adapter);
         rvHalls.setLayoutManager(new GridLayoutManager(this, 4)); // TODO remove magic number
 
+        rflHalls.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2, R.color.refresh_3);
+        rflHalls.setOnRefreshListener(() -> presenter.updateHalls());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        subscrHalls = NetworkClientFactory.getHallClient(getApplicationContext()).getHalls()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onHallsUpdated, this::onError);
+        presenter.loadHalls();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (subscrHalls != null && !subscrHalls.isDisposed()) subscrHalls.dispose();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -79,27 +72,33 @@ public class HallsActivity extends AppCompatActivity implements HallsAdapter.OnH
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        presenter.detach();
+    }
+
+    @Override
     public void onHallClick(HallModel hallModel) {
         Toast.makeText(this, hallModel.getName(), Toast.LENGTH_LONG).show();
     }
 
-    private void onHallsUpdated(List<HallModel> halls) {
+    @Override
+    public void onHallsLoaded(List<HallModel> halls) {
         hallList.clear();
         hallList.addAll(halls);
         adapter.notifyDataSetChanged();
     }
 
-    private void onError(Throwable th) {
+    @Override
+    public void onError(Throwable th) {
         Toast.makeText(this, "Updated failed", Toast.LENGTH_LONG).show();
         Log.i(CafeApp.LOG, "Error getting halls.", th);
     }
 
-    @Deprecated
-    private void initTestData() {
-        hallList.add(new HallModel("1", "Bowling Hall"));
-        hallList.add(new HallModel("1", "Bar Cafe"));
-        hallList.add(new HallModel("1", "Hall #1"));
-        hallList.add(new HallModel("1", "Mint Hall"));
-        hallList.add(new HallModel("1", "Hookah Hall Blah Blah"));
+    @Override
+    public void showUpdateProcess(boolean isShow) {
+        rflHalls.setRefreshing(isShow);
     }
+
 }

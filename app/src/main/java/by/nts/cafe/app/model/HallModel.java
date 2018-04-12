@@ -1,22 +1,33 @@
 package by.nts.cafe.app.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "halls")
 public class HallModel {
+    @PrimaryKey()
+    @ColumnInfo(name = "id")
+    @NonNull
     private String id;
+    @ColumnInfo(name = "name")
     private String name;
 
     public HallModel() {
     }
 
-    public HallModel(String id, String name) {
+    public HallModel(@NonNull String id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 

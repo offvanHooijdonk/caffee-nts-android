@@ -1,0 +1,48 @@
+package by.nts.cafe.app.presentation.presenter.halls;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import by.nts.cafe.app.helper.Transformsers;
+import by.nts.cafe.app.network.NetworkClientFactory;
+import by.nts.cafe.app.presentation.presenter.AbstractDisposePresenter;
+import by.nts.cafe.app.presentation.ui.halls.IHallsView;
+
+import static by.nts.cafe.app.CafeApp.getAppDatabase;
+
+public class HallsPresenter extends AbstractDisposePresenter {
+
+    private IHallsView view;
+    private Context ctx;
+
+    public HallsPresenter(@NonNull IHallsView view, @NonNull Context ctx) {
+        super();
+        this.view = view;
+        this.ctx = ctx;
+    }
+
+    public void loadHalls() {
+        addDisposable(
+                getAppDatabase().hallDao().getAll()
+                        .compose(Transformsers.schedulersIOMaybe())
+                        .subscribe(view::onHallsLoaded, view::onError)
+        );
+
+    }
+
+    public void updateHalls() {
+        view.showUpdateProcess(true);
+        addDisposable(
+                NetworkClientFactory.getHallClient(ctx).getHalls()
+                        .doOnNext(list -> getAppDatabase().hallDao().saveAll(list))
+                        .compose(Transformsers.schedulersIO())
+                        .doOnNext(list -> view.showUpdateProcess(false))
+                        .subscribe(view::onHallsLoaded, view::onError)
+        );
+    }
+
+    public void detach() {
+        view = null;
+        disposeAll();
+    }
+}
