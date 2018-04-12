@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/card_outer_padding">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:id="@+id/cardRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:paddingBottom="@dimen/item_padding_v"
+            android:paddingEnd="@dimen/item_padding_h"
+            android:paddingStart="@dimen/item_padding_h"
+            android:paddingTop="@dimen/item_padding_v">
+
+            <TextView
+                android:id="@+id/txtTableName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_table_name"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/txtTableStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTableName"
+                android:layout_marginTop="@dimen/item_padding_v"
+                android:textColor="@color/md_green_A700"
+                android:textSize="20sp"
+                android:text="Vacant"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</FrameLayout>
