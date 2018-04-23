@@ -57,12 +57,12 @@
                 android:text="-1" />
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/blockGuestsList"
+        <ListView
+            android:id="@+id/listGuests"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/activity_margin_v"
-            android:orientation="vertical" />
+            android:listSelector="@color/colorAccentLite"
+            android:layout_marginTop="@dimen/activity_margin_v" />
     </LinearLayout>
 
     <FrameLayout
@@ -72,7 +72,12 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@id/blockGuests">
 
-        <include layout="@layout/frag_guest_order" /> <!-- TODO make a fragment link -->
+        <TextView
+            android:id="@+id/txtNoGuestSelected"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Select a Guest"/>
     </FrameLayout>
 
 </RelativeLayout>
