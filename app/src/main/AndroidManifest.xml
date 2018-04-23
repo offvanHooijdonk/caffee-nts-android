@@ -35,6 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.ui.tables.TablesActivity" />
+        <activity android:name=".presentation.ui.tables.TableActivity" />
     </application>
 
 </manifest>

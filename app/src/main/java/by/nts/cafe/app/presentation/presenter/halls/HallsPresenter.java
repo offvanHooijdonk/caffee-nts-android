@@ -3,7 +3,7 @@ package by.nts.cafe.app.presentation.presenter.halls;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import by.nts.cafe.app.helper.Transformsers;
+import by.nts.cafe.app.helper.rx.Transformsers;
 import by.nts.cafe.app.network.NetworkClientFactory;
 import by.nts.cafe.app.presentation.presenter.AbstractDisposePresenter;
 import by.nts.cafe.app.presentation.ui.halls.IHallsView;

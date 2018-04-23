@@ -22,6 +22,7 @@ import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.HallModel;
 import by.nts.cafe.app.presentation.presenter.halls.HallsPresenter;
 import by.nts.cafe.app.presentation.ui.pref.PreferenceActivity;
+import by.nts.cafe.app.presentation.ui.tables.TablesActivity;
 
 public class HallsActivity extends AppCompatActivity implements IHallsView, HallsAdapter.OnHallClickListener {
     @BindView(R.id.rvHalls)
@@ -80,7 +81,7 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
 
     @Override
     public void onHallClick(HallModel hallModel) {
-        Toast.makeText(this, hallModel.getName(), Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, TablesActivity.class));
     }
 
     @Override

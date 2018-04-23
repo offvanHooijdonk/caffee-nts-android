@@ -16,4 +16,9 @@
     <string name="item_settings">Settings</string>
     <string name="item_sign_off">Sign off</string>
 
+    <string name="status_table_vacant">Vacant</string>
+    <string name="status_table_occupied">Occupied</string>
+    <string name="status_table_reserved">Reserved</string>
+    <string name="status_table_not_available">Not Available</string>
+
 </resources>

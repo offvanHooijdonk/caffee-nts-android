@@ -1,4 +1,4 @@
-package by.nts.cafe.app.helper;
+package by.nts.cafe.app.helper.rx;
 
 import io.reactivex.MaybeTransformer;
 import io.reactivex.ObservableTransformer;

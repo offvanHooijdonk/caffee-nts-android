@@ -1,12 +1,12 @@
 package by.nts.cafe.app.presentation.ui.tables;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +32,19 @@ public class TablesActivity extends AppCompatActivity implements TablesAdapter.O
         setContentView(R.layout.activity_tables);
         ButterKnife.bind(this);
 
+        initData();
         adapter = new TablesAdapter(this, tableList, this);
-        rvTable.setLayoutManager(new GridLayoutManager(this, 3)); // TODO make number configurable/adaptive
         rvTable.setAdapter(adapter);
+        rvTable.setLayoutManager(new GridLayoutManager(this, 3)); // TODO make number configurable/adaptive
+
+
+        refreshTables.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2, R.color.refresh_3);
+        refreshTables.setOnRefreshListener(() -> {refreshTables.setRefreshing(false);});
     }
 
     @Override
     public void onTableClick(TableModel tableModel) {
-        Toast.makeText(this, "Table clicked", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, TableActivity.class));
     }
 
     @Deprecated
