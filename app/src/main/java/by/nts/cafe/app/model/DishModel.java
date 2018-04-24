@@ -6,14 +6,16 @@ public class DishModel {
     private String id;
     private String name;
     private float price;
+    private String description;
 
     public DishModel() {
     }
 
-    public DishModel(String id, String name, float price) {
+    public DishModel(String id, String name, float price, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.description = description;
     }
 
     public String getId() {
@@ -38,6 +40,14 @@ public class DishModel {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

@@ -20,5 +20,8 @@
     <string name="status_table_occupied">Occupied</string>
     <string name="status_table_reserved">Reserved</string>
     <string name="status_table_not_available">Not Available</string>
+    <string name="fish_dish_descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="fish_dish_name">Pizza Pepperoni original spicy 450g</string>
+    <string name="fish_price">15.49</string>
 
 </resources>
