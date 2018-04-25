@@ -6,4 +6,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.DishDialog" parent="AppTheme">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.DishesTabLayoutText" parent="TextAppearance.Design.Tab">
+        <!--<item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>-->
+    </style>
 </resources>

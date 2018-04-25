@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/md_white_1000">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:tabIndicatorColor="@color/md_white_1000"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/md_white_1000"
+            app:tabTextAppearance="@style/AppTheme.DishesTabLayoutText"
+            app:tabTextColor="@color/md_white_1000" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/blockAmount"
+        android:layout_below="@id/appbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/blockAmount"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:id="@+id/blockAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/background_light"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:paddingBottom="8dp"
+        android:paddingEnd="@dimen/item_padding_h"
+        android:paddingStart="@dimen/item_padding_h"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/txtDishName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/inputAmount"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:hint="amount"
+            android:inputType="number"
+            android:text="2"
+            android:textSize="32sp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_add_24"
+            app:backgroundTint="@color/md_green_A700"
+            app:fabSize="mini" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_remove_24"
+            app:backgroundTint="@color/md_red_A200"
+            app:fabSize="mini" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/ic_check_24"
+            app:fabSize="mini" />
+    </LinearLayout>
+
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/blockButtons"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:id="@+id/blockButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/item_padding_v"
+        android:paddingEnd="@dimen/item_padding_h"
+        android:paddingStart="@dimen/item_padding_h"
+        android:paddingTop="@dimen/item_padding_v">
+
+        <Button
+            android:id="@+id/btnNegative"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@android:string/cancel" />
+
+        <Button
+            android:id="@+id/btnPositive"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@android:string/ok" />
+    </LinearLayout>-->
+
+</RelativeLayout>
