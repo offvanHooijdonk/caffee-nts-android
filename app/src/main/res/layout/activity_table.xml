@@ -69,7 +69,7 @@
         android:id="@+id/blockGuestOrder"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
+        android:layout_toStartOf="@id/blockSummary"
         android:layout_toEndOf="@id/blockGuests">
 
         <TextView
@@ -79,5 +79,50 @@
             android:gravity="center"
             android:text="Select a Guest"/>
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/blockSummary"
+        android:layout_width="112dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Summ"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="82.75"
+            android:textSize="28sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Discount: personal card"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="10%"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Total"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textColor="@color/colorAccent"
+            android:text="74.50"/>
+    </LinearLayout>
 
 </RelativeLayout>
