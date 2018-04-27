@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Кафе НТС</string>
+    <string name="fish_dish_descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="fish_user_names">Имя Фамилия</string>
+    <string name="dialog_password_title">Введите пароль</string>
+    <string name="fish_hall_name">Зал Боулинг</string>
+    <string name="fish_table_name">Столик 1</string>
+    <string name="label_halls">Залы</string>
+    <string name="pref_host_title">Адрес сервера</string>
+    <string name="pref_path_title">Путь на сервере</string>
+    <string name="item_settings">Настройки</string>
+    <string name="item_sign_off">Выйти</string>
+    <string name="status_table_vacant">Свободный</string>
+    <string name="status_table_occupied">Занят</string>
+    <string name="status_table_reserved">Заказан</string>
+    <string name="status_table_not_available">Недоступен</string>
+    <string name="fish_dish_name">Пицца Пепперони оригианльная острая 450г</string>
+    <string name="fish_price">15,49</string>
+    <string name="table_add_guest">Новый Гость</string>
+    <string name="menu_select_guest">Выберите гостя</string>
+    <string name="table_summary">Сумма</string>
+    <string name="fish_total_price">124,75</string>
+    <string name="fish_discount">Персональная скидка</string>
+    <string name="fish_discount_per_cent">10%</string>
+    <string name="table_summ_total">Итог</string>
+    <string name="fish_total_with_discount">107,35</string>
+    <string name="table_guests_num">Гостей</string>
+    <string name="order_empty">Ничего не заказано</string>
 </resources>

@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/guest"
     android:descendantFocusability="blocksDescendants"
-    android:gravity="end"
+    android:gravity="center_vertical"
     android:paddingBottom="@dimen/activity_margin_v"
     android:paddingEnd="@dimen/item_padding_h"
     android:paddingStart="@dimen/item_padding_h"
     android:paddingTop="@dimen/activity_margin_v">
 
-    <TextView
-        android:id="@+id/txtGuestNumber"
+    <!-- see if will be usable -->
+    <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/circle_number"
-        android:text="1"
-        android:textAlignment="center"
-        android:textColor="@color/md_white_1000"
-        android:textSize="28sp" />
-</RelativeLayout>
+        android:background="?android:selectableItemBackground"
+        android:padding="8dp"
+        android:src="@drawable/ic_close_24"
+        android:tint="@color/md_blue_grey_300"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/txtGuestNumber"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_number"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="@color/md_white_1000"
+            android:textSize="28sp" />
+    </LinearLayout>
+</LinearLayout>

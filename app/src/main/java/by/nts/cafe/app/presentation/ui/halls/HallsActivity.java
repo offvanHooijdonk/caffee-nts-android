@@ -93,7 +93,8 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
 
     @Override
     public void onError(Throwable th) {
-        Toast.makeText(this, "Updated failed", Toast.LENGTH_LONG).show();
+        rflHalls.setRefreshing(false);
+        Toast.makeText(this, "Update failed", Toast.LENGTH_LONG).show();
         Log.i(CafeApp.LOG, "Error getting halls.", th);
     }
 

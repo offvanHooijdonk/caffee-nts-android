@@ -23,5 +23,15 @@
     <string name="fish_dish_descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="fish_dish_name">Pizza Pepperoni original spicy 450g</string>
     <string name="fish_price">15.49</string>
+    <string name="table_add_guest">New Guest</string>
+    <string name="table_guests_num">Guests</string>
+    <string name="menu_select_guest">Select a Guest</string>
+    <string name="table_summary">Summ</string>
+    <string name="fish_total_price">124.75</string>
+    <string name="fish_discount">Discount: personal card</string>
+    <string name="fish_discount_per_cent">10%</string>
+    <string name="table_summ_total">Total</string>
+    <string name="fish_total_with_discount">74.50</string>
+    <string name="order_empty">Order Empty</string>
 
 </resources>
