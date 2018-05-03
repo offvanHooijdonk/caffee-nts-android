@@ -3,7 +3,6 @@ package by.nts.cafe.app.presentation.ui.tables.order;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,8 +27,6 @@ public class GuestOrderFragment extends Fragment {
     RecyclerView rvOrder;
     @BindView(R.id.txtEmpty)
     TextView txtEmpty;
-    @BindView(R.id.fabAddDish)
-    FloatingActionButton fab;
 
     private List<DishModel> dishList = new ArrayList<>();
     private OrderAdapter adapter;
@@ -53,7 +50,8 @@ public class GuestOrderFragment extends Fragment {
         onOrderLoaded();
     }
 
-    @OnClick(R.id.fabAddDish)
+    //@OnClick(R.id.fabAddDish)
+    @OnClick(R.id.btnAddDish)
     public void onAddClick(View v) {
         new AddDishDialog().show(getFragmentManager(), TAG_DIALOG_MENU);
     }
