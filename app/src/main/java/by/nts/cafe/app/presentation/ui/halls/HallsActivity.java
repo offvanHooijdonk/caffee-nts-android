@@ -19,12 +19,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.CafeApp;
 import by.nts.cafe.app.R;
+import by.nts.cafe.app.helper.UIHelper;
 import by.nts.cafe.app.model.HallModel;
 import by.nts.cafe.app.presentation.presenter.halls.HallsPresenter;
 import by.nts.cafe.app.presentation.ui.pref.PreferenceActivity;
 import by.nts.cafe.app.presentation.ui.tables.TablesActivity;
 
 public class HallsActivity extends AppCompatActivity implements IHallsView, HallsAdapter.OnHallClickListener {
+    // region declarations
     @BindView(R.id.rvHalls)
     RecyclerView rvHalls;
     @BindView(R.id.rflHalls)
@@ -34,6 +36,7 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
 
     private HallsAdapter adapter;
     private List<HallModel> hallList = new ArrayList<>();
+    // endregion
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
         rvHalls.setAdapter(adapter);
         rvHalls.setLayoutManager(new GridLayoutManager(this, 4)); // TODO remove magic number
 
-        rflHalls.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2, R.color.refresh_3);
+        UIHelper.setupRefreshLayout(rflHalls);
         rflHalls.setOnRefreshListener(() -> presenter.updateHalls());
     }
 
@@ -57,7 +60,7 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
         presenter.loadHalls();
     }
 
-
+    // region Lifecycle
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -78,12 +81,16 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
 
         presenter.detach();
     }
+    //endregion
 
+    // region Callbacks
     @Override
     public void onHallClick(HallModel hallModel) {
         startActivity(new Intent(this, TablesActivity.class));
     }
+    // endregion
 
+    // region Interaction
     @Override
     public void onHallsLoaded(List<HallModel> halls) {
         hallList.clear();
@@ -102,5 +109,5 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
     public void showUpdateProcess(boolean isShow) {
         rflHalls.setRefreshing(isShow);
     }
-
+    // endregion
 }

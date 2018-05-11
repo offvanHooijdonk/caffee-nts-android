@@ -1,134 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_margin_v"
-    android:paddingEnd="@dimen/activity_margin_h"
-    android:paddingStart="@dimen/activity_margin_h"
-    android:paddingTop="@dimen/activity_margin_v">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/blockGuests"
-        android:layout_width="160dp"
+        android:id="@+id/root"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical">
+        android:animateLayoutChanges="true"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:id="@+id/blockNotifications"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/table_guests_num"
-                android:textSize="20sp" />
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtGuestsNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16sp"
-                android:text="4"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp" />
+            <fragment
+                android:id="@+id/fragNotifications"
+                class="by.nts.cafe.app.presentation.ui.tables.NotificationsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </LinearLayout>
 
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+1" />
-
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="-1" />
-        </LinearLayout>-->
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:text="@string/table_add_guest"/>
-
-        <ListView
-            android:id="@+id/listGuests"
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:id="@+id/blockOrder"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:listSelector="@color/colorAccentLite"
-            android:layout_marginTop="@dimen/activity_margin_v" />
+            android:layout_weight="1">
+
+            <fragment
+                android:id="@+id/fragOrder"
+                class="by.nts.cafe.app.presentation.ui.tables.order.OrderFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/blockSummary"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/table_summary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_total_price"
+                android:textSize="28sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/fish_discount" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_discount_per_cent"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/table_summ_total" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_total_with_discount"
+                android:textColor="@color/colorAccent"
+                android:textSize="28sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/blockMenu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/fragMenu"
+                class="by.nts.cafe.app.presentation.ui.tables.order.AddDishDialog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/blockGuestOrder"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabMenu"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toStartOf="@id/blockSummary"
-        android:layout_toEndOf="@id/blockGuests">
-
-        <TextView
-            android:id="@+id/txtNoGuestSelected"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/menu_select_guest"/>
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/blockSummary"
-        android:layout_width="112dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="16sp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/table_summary"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fish_total_price"
-            android:textSize="28sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/fish_discount"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="@string/fish_discount_per_cent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/table_summ_total"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:textColor="@color/colorAccent"
-            android:text="@string/fish_total_with_discount"/>
-    </LinearLayout>
-
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_menu_24"
+        app:layout_anchor="@id/blockOrder"
+        app:layout_anchorGravity="bottom|end" />
+</android.support.design.widget.CoordinatorLayout>

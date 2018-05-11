@@ -73,12 +73,12 @@ public class AddDishDialog extends DialogFragment implements MenuFragment.OnDish
     public void onStart() {
         super.onStart();
 
-        getDialog().setCancelable(true);
-        getDialog().setCanceledOnTouchOutside(true);
-        getDialog().getWindow().setLayout(getContext().getResources().getDimensionPixelOffset(R.dimen.dialog_dish_width),
-                WindowManager.LayoutParams.MATCH_PARENT);
-
-
+        if (getDialog() != null) {
+            getDialog().setCancelable(true);
+            getDialog().setCanceledOnTouchOutside(true);
+            getDialog().getWindow().setLayout(getContext().getResources().getDimensionPixelOffset(R.dimen.dialog_dish_width),
+                    WindowManager.LayoutParams.MATCH_PARENT);
+        }
     }
 
     @Override

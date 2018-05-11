@@ -13,7 +13,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.helper.ResHelper;
+import by.nts.cafe.app.helper.UIHelper;
 import by.nts.cafe.app.model.TableModel;
 
 public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder> {
@@ -38,9 +38,9 @@ public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder
         TableModel table = tables.get(position);
 
         vh.txtTableName.setText(table.getName());
-        vh.txtTableStatus.setText(ResHelper.getTableStatusTitleRes(table.getStatus()));
+        vh.txtTableStatus.setText(UIHelper.getTableStatusTitleRes(table.getStatus()));
         vh.txtTableStatus.setTextColor(ctx.getResources().getColor(
-                ResHelper.getTableStatusColorRes(table.getStatus())
+                UIHelper.getTableStatusColorRes(table.getStatus())
         ));
 
         vh.root.setOnClickListener(v -> {

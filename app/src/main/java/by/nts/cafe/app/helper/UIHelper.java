@@ -1,12 +1,14 @@
 package by.nts.cafe.app.helper;
 
+import android.support.v4.widget.SwipeRefreshLayout;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.TableModel;
 
-public class ResHelper {
+public class UIHelper {
 
     private static Map<TableModel.STATUS, Integer> STATUS_TABLE_TITLES = new HashMap<>();
     private static Map<TableModel.STATUS, Integer> STATUS_TABLE_COLORS = new HashMap<>();
@@ -29,5 +31,9 @@ public class ResHelper {
 
     public static Integer getTableStatusColorRes(TableModel.STATUS status) {
         return STATUS_TABLE_COLORS.get(status);
+    }
+
+    public static void setupRefreshLayout(SwipeRefreshLayout refreshLayout) {
+        refreshLayout.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2, R.color.refresh_3);
     }
 }

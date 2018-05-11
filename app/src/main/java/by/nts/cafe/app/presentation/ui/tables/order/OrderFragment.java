@@ -16,17 +16,18 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.DishModel;
 
-public class GuestOrderFragment extends Fragment {
+public class OrderFragment extends Fragment {
     private static final String TAG_DIALOG_MENU = "dialog_menu";
 
     @BindView(R.id.rvOrder)
     RecyclerView rvOrder;
     @BindView(R.id.txtEmpty)
     TextView txtEmpty;
+    /*@BindView(R.id.btnAddDish)
+    Button btnAddDish;*/
 
     private List<DishModel> dishList = new ArrayList<>();
     private OrderAdapter adapter;
@@ -34,7 +35,7 @@ public class GuestOrderFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_guest_order, container, false);
+        return inflater.inflate(R.layout.frag_order, container, false);
     }
 
     @Override
@@ -51,10 +52,14 @@ public class GuestOrderFragment extends Fragment {
     }
 
     //@OnClick(R.id.fabAddDish)
-    @OnClick(R.id.btnAddDish)
+/*    @OnClick(R.id.btnAddDish)
     public void onAddClick(View v) {
-        new AddDishDialog().show(getFragmentManager(), TAG_DIALOG_MENU);
-    }
+        //new AddDishDialog().show(getFragmentManager(), TAG_DIALOG_MENU);
+        if (getActivity() instanceof ITableView) {
+            ((ITableView) getActivity()).onMenuRequested(true);
+            v.setVisibility(View.GONE);
+        }
+    }*/
 
     private void onOrderLoaded() {
         iniData();

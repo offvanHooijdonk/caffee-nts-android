@@ -2,27 +2,29 @@ package by.nts.cafe.app.presentation.ui.tables;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.presentation.ui.tables.order.GuestOrderFragment;
 
 public class TableActivity extends AppCompatActivity {
-    @BindView(R.id.listGuests)
-    ListView listGuests;
-    @BindView(R.id.txtNoGuestSelected)
-    TextView txtNoGuestSelected;
 
-    private List<Integer> guestList = new ArrayList<>();
+    @BindView(R.id.root)
+    View root;
+    @BindView(R.id.blockNotifications)
+    View blockNotifications;
+    @BindView(R.id.blockSummary)
+    View blockSummary;
+    @BindView(R.id.blockMenu)
+    View blockMenu;
+    @BindView(R.id.fabMenu)
+    FloatingActionButton fabMenu;
+
+    private boolean isMenuShown = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,21 +32,27 @@ public class TableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_table);
 
         ButterKnife.bind(this);
-
-        initData();
-        listGuests.setAdapter(new ArrayAdapter<>(this, R.layout.item_guest, R.id.txtGuestNumber, guestList));
-        listGuests.setOnItemClickListener((parent, view, position, id) -> {
-            view.setSelected(true);
-            txtNoGuestSelected.setVisibility(View.GONE);
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.blockGuestOrder, new GuestOrderFragment())
-                    .commit();
-        });
     }
 
-    @Deprecated
-    private void initData() {
-        for (int i = 1; i < 9; i++) guestList.add(i);
+    @OnClick(R.id.fabMenu)
+    protected void onMenuClick() {
+        if (isMenuShown) {
+            blockMenu.getLayoutParams().width = 0;
+            blockNotifications.setVisibility(View.VISIBLE);
+            blockSummary.setVisibility(View.VISIBLE);
+            //blockMenu.setVisibility(View.GONE);
+
+            fabMenu.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_24));
+        } else {
+            //blockMenu.setVisibility(View.VISIBLE);
+            blockMenu.getLayoutParams().width = root.getWidth() / 2;
+            blockNotifications.setVisibility(View.GONE);
+            blockSummary.setVisibility(View.GONE);
+
+            fabMenu.setImageDrawable(getResources().getDrawable(R.drawable.ic_close_24));
+        }
+
+        isMenuShown = !isMenuShown;
     }
+
 }
