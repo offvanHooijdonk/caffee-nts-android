@@ -38,11 +38,4 @@
         android:text="@string/fish_price"
         android:textSize="20sp" />
 
-    <TextView
-        android:layout_marginTop="8dp"
-        android:id="@+id/txtDishDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtDishName"
-        android:text="@string/fish_dish_descr"/>
 </RelativeLayout>

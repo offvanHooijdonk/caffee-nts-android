@@ -37,7 +37,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         DishModel dish = dishList.get(position);
 
         vh.txtDishName.setText(dish.getName());
-        vh.txtDishDescription.setText(dish.getDescription());
         vh.txtDishPrice.setText(NumberFormat.getCurrencyInstance().format(dish.getPrice()));
         vh.txtAmount.setText("1");
     }
@@ -52,8 +51,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView txtDishName;
         @BindView(R.id.txtDishPrice)
         TextView txtDishPrice;
-        @BindView(R.id.txtDishDescription)
-        TextView txtDishDescription;
         @BindView(R.id.txtAmount)
         TextView txtAmount;
 

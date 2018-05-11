@@ -1,4 +1,4 @@
-package by.nts.cafe.app.presentation.ui.tables.order;
+package by.nts.cafe.app.presentation.ui.tables.menu;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -46,7 +46,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         vh.txtDishName.setText(dish.getName());
         vh.txtDishDescription.setText(dish.getDescription());
         vh.txtDishPrice.setText(NumberFormat.getCurrencyInstance().format(dish.getPrice()));
-        vh.txtAmount.setText("1");
 
         vh.root.setSelected(lastCheckedPosition == position);
 
@@ -71,8 +70,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         TextView txtDishPrice;
         @BindView(R.id.txtDishDescription)
         TextView txtDishDescription;
-        @BindView(R.id.txtAmount)
-        TextView txtAmount;
 
         public ViewHolder(View itemView) {
             super(itemView);

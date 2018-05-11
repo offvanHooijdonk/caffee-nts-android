@@ -92,7 +92,7 @@
 
             <fragment
                 android:id="@+id/fragMenu"
-                class="by.nts.cafe.app.presentation.ui.tables.order.AddDishDialog"
+                class="by.nts.cafe.app.presentation.ui.tables.menu.AddDishDialogFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>

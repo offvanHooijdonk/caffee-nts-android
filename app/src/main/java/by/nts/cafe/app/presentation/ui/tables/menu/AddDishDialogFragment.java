@@ -1,7 +1,8 @@
-package by.nts.cafe.app.presentation.ui.tables.order;
+package by.nts.cafe.app.presentation.ui.tables.menu;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -11,14 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.DishModel;
 
-public class AddDishDialog extends DialogFragment implements MenuFragment.OnDishSelectedListener {
+public class AddDishDialogFragment extends DialogFragment implements MenuFragment.OnDishSelectedListener {
+
+    //region Declarations
     @BindView(R.id.tabs)
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
@@ -27,6 +32,15 @@ public class AddDishDialog extends DialogFragment implements MenuFragment.OnDish
     View blockAmount;
     @BindView(R.id.txtDishName)
     TextView txtDishName;
+    @BindView(R.id.btnPlus)
+    ImageButton btnPlus;
+    @BindView(R.id.btnMinus)
+    ImageButton btnMinus;
+    @BindView(R.id.fabAddDish)
+    FloatingActionButton fabAddDish;
+
+    private DishModel dishSelected;
+    //endregion
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,8 +95,16 @@ public class AddDishDialog extends DialogFragment implements MenuFragment.OnDish
         }
     }
 
+    @OnClick(R.id.fabAddDish)
+    protected void addDishToOrder() {
+        // todo call for presenter
+
+        dishSelected = null; // call when saved and hide the block
+    }
+
     @Override
     public void onDishSelect(DishModel dishModel) {
+        dishSelected = dishModel;
         blockAmount.setVisibility(View.VISIBLE);
         txtDishName.setText(dishModel.getName());
     }

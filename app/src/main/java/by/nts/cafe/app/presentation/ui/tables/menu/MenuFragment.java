@@ -1,4 +1,4 @@
-package by.nts.cafe.app.presentation.ui.tables.order;
+package by.nts.cafe.app.presentation.ui.tables.menu;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

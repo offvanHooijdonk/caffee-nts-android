@@ -63,28 +63,31 @@
             android:id="@+id/inputAmount"
             android:layout_width="56dp"
             android:layout_height="wrap_content"
-            android:hint="amount"
+            android:hint="@string/hint_dish_amount"
             android:inputType="number"
-            android:text="2"
+            android:text="@string/fish_dish_amount"
             android:textSize="32sp" />
 
         <ImageButton
+            android:id="@+id/btnPlus"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:tint="@color/colorAccent"
-            android:src="@drawable/ic_add_24" />
+            android:src="@drawable/ic_add_24"
+            android:tint="@color/colorAccent" />
 
         <ImageButton
+            android:id="@+id/btnMinus"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:tint="@color/colorAccent"
-            android:src="@drawable/ic_remove_24" />
+            android:src="@drawable/ic_remove_24"
+            android:tint="@color/colorAccent" />
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAddDish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
@@ -92,38 +95,5 @@
             android:src="@drawable/ic_check_24"
             app:fabSize="mini" />
     </LinearLayout>
-
-    <!--<View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@id/blockButtons"
-        android:background="@color/colorAccent" />
-
-    <LinearLayout
-        android:id="@+id/blockButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="end"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/item_padding_v"
-        android:paddingEnd="@dimen/item_padding_h"
-        android:paddingStart="@dimen/item_padding_h"
-        android:paddingTop="@dimen/item_padding_v">
-
-        <Button
-            android:id="@+id/btnNegative"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@android:string/cancel" />
-
-        <Button
-            android:id="@+id/btnPositive"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@android:string/ok" />
-    </LinearLayout>-->
 
 </RelativeLayout>

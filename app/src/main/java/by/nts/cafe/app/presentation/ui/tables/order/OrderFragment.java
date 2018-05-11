@@ -26,8 +26,6 @@ public class OrderFragment extends Fragment {
     RecyclerView rvOrder;
     @BindView(R.id.txtEmpty)
     TextView txtEmpty;
-    /*@BindView(R.id.btnAddDish)
-    Button btnAddDish;*/
 
     private List<DishModel> dishList = new ArrayList<>();
     private OrderAdapter adapter;
@@ -50,16 +48,6 @@ public class OrderFragment extends Fragment {
 
         onOrderLoaded();
     }
-
-    //@OnClick(R.id.fabAddDish)
-/*    @OnClick(R.id.btnAddDish)
-    public void onAddClick(View v) {
-        //new AddDishDialog().show(getFragmentManager(), TAG_DIALOG_MENU);
-        if (getActivity() instanceof ITableView) {
-            ((ITableView) getActivity()).onMenuRequested(true);
-            v.setVisibility(View.GONE);
-        }
-    }*/
 
     private void onOrderLoaded() {
         iniData();

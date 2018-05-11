@@ -33,5 +33,7 @@
     <string name="table_summ_total">Total</string>
     <string name="fish_total_with_discount">74.50</string>
     <string name="order_empty">Order Empty</string>
+    <string name="fish_dish_amount">2</string>
+    <string name="hint_dish_amount">Amount</string>
 
 </resources>
