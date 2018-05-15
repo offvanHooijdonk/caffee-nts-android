@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.DishModel;
 
-public class OrderFragment extends Fragment {
+public class OrderFragment extends Fragment implements IOrderView {
     private static final String TAG_DIALOG_MENU = "dialog_menu";
 
     @BindView(R.id.rvOrder)

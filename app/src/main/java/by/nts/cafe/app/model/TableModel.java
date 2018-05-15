@@ -1,8 +1,19 @@
 package by.nts.cafe.app.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "tables")
 public class TableModel {
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     private int id;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "hallId")
+    private long hallId;
+    @ColumnInfo(name = "status")
     private STATUS status;
 
     public TableModel() {
@@ -28,6 +39,14 @@ public class TableModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public long getHallId() {
+        return hallId;
+    }
+
+    public void setHallId(long hallId) {
+        this.hallId = hallId;
     }
 
     public STATUS getStatus() {

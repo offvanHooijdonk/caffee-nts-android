@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 public class HallModel {
     @PrimaryKey()
     @ColumnInfo(name = "id")
-    @NonNull
     private String id;
     @ColumnInfo(name = "name")
     private String name;
