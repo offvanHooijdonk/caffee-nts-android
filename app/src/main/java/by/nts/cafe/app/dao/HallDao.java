@@ -7,7 +7,7 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import by.nts.cafe.app.model.HallModel;
+import by.nts.cafe.app.model.db.HallModel;
 import io.reactivex.Maybe;
 
 @Dao

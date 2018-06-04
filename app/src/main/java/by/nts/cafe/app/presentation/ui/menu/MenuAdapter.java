@@ -1,4 +1,4 @@
-package by.nts.cafe.app.presentation.ui.tables.menu;
+package by.nts.cafe.app.presentation.ui.menu;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.model.DishModel;
+import by.nts.cafe.app.model.db.DishModel;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     private static int lastCheckedPosition;

@@ -1,4 +1,4 @@
-package by.nts.cafe.app.model;
+package by.nts.cafe.app.model.db;
 
 public class UserModel {
     private String id;

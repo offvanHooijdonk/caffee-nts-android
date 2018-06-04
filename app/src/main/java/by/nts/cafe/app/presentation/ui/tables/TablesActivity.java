@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.model.TableModel;
+import by.nts.cafe.app.model.db.TableModel;
 
 public class TablesActivity extends AppCompatActivity implements TablesAdapter.OnTableClickListener {
 

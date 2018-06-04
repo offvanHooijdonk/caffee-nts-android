@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.helper.UIHelper;
-import by.nts.cafe.app.model.TableModel;
+import by.nts.cafe.app.model.db.TableModel;
 
 public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder> {
     private Context ctx;

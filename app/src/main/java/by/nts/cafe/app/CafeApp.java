@@ -8,7 +8,7 @@ import java.util.List;
 
 import by.nts.cafe.app.dao.AppDatabase;
 import by.nts.cafe.app.helper.rx.Transformsers;
-import by.nts.cafe.app.model.HallModel;
+import by.nts.cafe.app.model.db.HallModel;
 import io.reactivex.disposables.Disposable;
 
 public class CafeApp extends Application {

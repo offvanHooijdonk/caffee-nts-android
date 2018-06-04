@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import by.nts.cafe.app.CafeApp;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.helper.UIHelper;
-import by.nts.cafe.app.model.HallModel;
+import by.nts.cafe.app.model.db.HallModel;
 import by.nts.cafe.app.presentation.presenter.halls.HallsPresenter;
 import by.nts.cafe.app.presentation.ui.pref.PreferenceActivity;
 import by.nts.cafe.app.presentation.ui.tables.TablesActivity;

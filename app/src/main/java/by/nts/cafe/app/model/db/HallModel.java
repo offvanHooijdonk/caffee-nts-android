@@ -1,4 +1,4 @@
-package by.nts.cafe.app.model;
+package by.nts.cafe.app.model.db;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

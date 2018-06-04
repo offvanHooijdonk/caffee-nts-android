@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.model.UserModel;
+import by.nts.cafe.app.model.db.UserModel;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
 

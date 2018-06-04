@@ -36,7 +36,7 @@
 
             <fragment
                 android:id="@+id/fragOrder"
-                class="by.nts.cafe.app.presentation.ui.tables.order.OrderFragment"
+                class="by.nts.cafe.app.presentation.ui.order.OrderFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
@@ -92,7 +92,7 @@
 
             <fragment
                 android:id="@+id/fragMenu"
-                class="by.nts.cafe.app.presentation.ui.tables.menu.AddDishDialogFragment"
+                class="by.nts.cafe.app.presentation.ui.menu.AddDishDialogFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>

@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.model.UserModel;
+import by.nts.cafe.app.model.db.UserModel;
 import by.nts.cafe.app.presentation.ui.halls.HallsActivity;
 
 public class LoginActivity extends AppCompatActivity implements UsersAdapter.OnUserClickListener {

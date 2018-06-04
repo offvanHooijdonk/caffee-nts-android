@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.model.HallModel;
+import by.nts.cafe.app.model.db.HallModel;
 
 public class HallsAdapter extends RecyclerView.Adapter<HallsAdapter.ViewHolder> {
     private Context ctx;
