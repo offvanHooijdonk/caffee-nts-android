@@ -4,7 +4,9 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "Order")
+import org.jetbrains.annotations.NotNull;
+
+@Entity(tableName = "Orders")
 public class OrderModel {
     @PrimaryKey()
     @ColumnInfo(name = "id")

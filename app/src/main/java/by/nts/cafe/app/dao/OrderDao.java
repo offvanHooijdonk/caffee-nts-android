@@ -8,6 +8,6 @@ import io.reactivex.Maybe;
 
 @Dao
 public interface OrderDao {
-    @Query("SELECT * from `Order`")
+    @Query("SELECT * from Orders")
     Maybe<OrderModel> findById();
 }
