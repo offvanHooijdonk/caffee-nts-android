@@ -31,14 +31,7 @@ public class CafeApp extends Application {
         Disposable d = getAppDatabase().hallDao().getAll()
                 .doOnSuccess(list -> {
                     if (list.isEmpty()) {
-                        List<HallModel> hallModels = new ArrayList<>();
-                        hallModels.add(new HallModel("1", "Bowling Hall"));
-                        hallModels.add(new HallModel("51", "Primary Hall"));
-                        hallModels.add(new HallModel("985", "Hookah Hall"));
-                        hallModels.add(new HallModel("6233", "Bar Hall"));
-                        hallModels.add(new HallModel("63", "Hall #2"));
-
-                        getAppDatabase().hallDao().saveAll(hallModels);
+                        AppDatabase.initTempData(getAppDatabase());
                     }
                 })
                 .compose(Transformsers.schedulersIOMaybe())

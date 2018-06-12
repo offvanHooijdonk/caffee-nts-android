@@ -86,7 +86,10 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
     // region Callbacks
     @Override
     public void onHallClick(HallModel hallModel) {
-        startActivity(new Intent(this, TablesActivity.class));
+        startActivity(new Intent(this, TablesActivity.class)
+                .putExtra(TablesActivity.EXTRA_TABLE_ID, hallModel.getId())
+                .putExtra(TablesActivity.EXTRA_TABLE_TABLE, hallModel.getName())
+        );
     }
     // endregion
 

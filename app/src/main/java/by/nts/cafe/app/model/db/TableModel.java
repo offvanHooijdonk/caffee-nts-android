@@ -12,16 +12,17 @@ public class TableModel {
     @ColumnInfo(name = "name")
     private String name;
     @ColumnInfo(name = "hallId")
-    private long hallId;
+    private String hallId;
     @ColumnInfo(name = "status")
     private STATUS status;
 
     public TableModel() {
     }
 
-    public TableModel(int id, String name, STATUS status) {
+    public TableModel(int id, String name, String hallId, STATUS status) {
         this.id = id;
         this.name = name;
+        this.hallId = hallId;
         this.status = status;
     }
 
@@ -41,11 +42,11 @@ public class TableModel {
         this.name = name;
     }
 
-    public long getHallId() {
+    public String getHallId() {
         return hallId;
     }
 
-    public void setHallId(long hallId) {
+    public void setHallId(String hallId) {
         this.hallId = hallId;
     }
 
