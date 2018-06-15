@@ -13,7 +13,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkClientFactory {
     private static OkHttpClient httpClient;
     private static Retrofit retrofit;
+
     private static HallClient hallClient;
+    private static TableClient tableClient;
 
     public static HallClient getHallClient(Context ctx) {
         if (hallClient == null) {
@@ -21,6 +23,14 @@ public class NetworkClientFactory {
         }
         return hallClient;
     }
+
+    public static TableClient getTableClient(Context ctx) {
+        if (tableClient == null) {
+            tableClient = getApi(ctx).create(TableClient.class);
+        }
+        return tableClient;
+    }
+
 // TODO recreate API whenever preference changed?
     private static Retrofit getApi(Context ctx) {
         if (retrofit == null) {

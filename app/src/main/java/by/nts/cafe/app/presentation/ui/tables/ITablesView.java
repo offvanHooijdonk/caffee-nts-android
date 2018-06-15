@@ -8,4 +8,6 @@ public interface ITablesView {
     void handleError(Throwable th);
 
     void onTablesLoaded(List<TableModel> list);
+
+    void showRefreshing(boolean isShow);
 }

@@ -39,7 +39,7 @@ public class TablesActivity extends AppCompatActivity implements ITablesView, Ta
         setContentView(R.layout.activity_tables);
         ButterKnife.bind(this);
 
-        presenter = new TablesPresenter(this);
+        presenter = new TablesPresenter(this, getApplicationContext());
 
         String hallName = getIntent().getStringExtra(EXTRA_TABLE_TABLE);
         if (hallName != null) {
@@ -54,12 +54,12 @@ public class TablesActivity extends AppCompatActivity implements ITablesView, Ta
         hallId = getIntent().getStringExtra(EXTRA_TABLE_ID);
         if (hallId != null) {
             presenter.loadTableList(hallId);
+            refreshTables.setOnRefreshListener(() -> presenter.updateTablesList(hallId));
+            UIHelper.setupRefreshLayout(refreshTables);
         } else {
             // todo show message
+            refreshTables.setEnabled(false);
         }
-
-        UIHelper.setupRefreshLayout(refreshTables);
-        refreshTables.setOnRefreshListener(() -> refreshTables.setRefreshing(false));
     }
 
     @Override
@@ -69,11 +69,24 @@ public class TablesActivity extends AppCompatActivity implements ITablesView, Ta
 
     @Override
     public void onTablesLoaded(List<TableModel> list) {
+        tableList.clear();
+        tableList.addAll(list);
 
+        adapter.notifyDataSetChanged();
+        showEmptyListView(tableList.isEmpty());
     }
 
     @Override
     public void handleError(Throwable th) {
         Toast.makeText(this, th.getMessage(), Toast.LENGTH_LONG).show(); // TODO handle better
+    }
+
+    @Override
+    public void showRefreshing(boolean isShow) {
+        refreshTables.setRefreshing(false);
+    }
+
+    private void showEmptyListView(boolean isShow) {
+        // todo
     }
 }
