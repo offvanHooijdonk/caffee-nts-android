@@ -3,6 +3,9 @@ package by.nts.cafe.app.model.db;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+
+import by.nts.cafe.app.model.db.converter.TypeConverter;
 
 @Entity(tableName = "tables")
 public class TableModel {
@@ -14,6 +17,7 @@ public class TableModel {
     @ColumnInfo(name = "hallId")
     private String hallId;
     @ColumnInfo(name = "status")
+    @TypeConverters({TypeConverter.class})
     private STATUS status;
 
     public TableModel() {
@@ -79,6 +83,19 @@ public class TableModel {
 
         public int getCode() {
             return code;
+        }
+
+        public static STATUS fromCode(int code) {
+            STATUS status;
+            switch (code) {
+                case 0: status = VACANT; break;
+                case 1: status = OCCUPIED; break;
+                case 2: status = RESERVED; break;
+                case -1: status = NOT_AVAILABLE; break;
+                default: status = VACANT;
+            }
+
+            return status;
         }
     }
 }

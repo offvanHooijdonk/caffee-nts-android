@@ -14,7 +14,7 @@ import by.nts.cafe.app.model.db.TableModel;
 
 @Database(entities = {HallModel.class, OrderModel.class, TableModel.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    private static final String DB_NAME = "cafe-nts-v0.26";
+    private static final String DB_NAME = "cafe-nts-v0.27";
 
     public static AppDatabase buildDatabase(Context ctx) {
         return Room.databaseBuilder(ctx, AppDatabase.class, DB_NAME).build();

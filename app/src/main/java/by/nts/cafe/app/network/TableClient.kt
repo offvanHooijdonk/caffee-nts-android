@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface TableClient {
-    @GET
+    @GET("tables")
     fun getTables(@Query("hallId") hallId: String): Observable<List<TableModel>>
 }
