@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -57,7 +58,13 @@ public class TablesActivity extends AppCompatActivity implements ITablesView, Ta
             refreshTables.setOnRefreshListener(() -> presenter.updateTablesList(hallId));
             UIHelper.setupRefreshLayout(refreshTables);
         } else {
-            // todo show message
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.error_title_hall_not_picked)
+                    .setMessage(R.string.error_msg_hall_not_picked)
+                    .setCancelable(true)
+                    .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                    }).create().show();
             refreshTables.setEnabled(false);
         }
     }
