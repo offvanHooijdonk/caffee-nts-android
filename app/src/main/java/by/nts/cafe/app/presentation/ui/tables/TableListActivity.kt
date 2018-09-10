@@ -8,10 +8,12 @@ import android.widget.Toast
 import by.nts.cafe.app.R
 import by.nts.cafe.app.helper.UIHelper
 import by.nts.cafe.app.model.db.TableModel
+import by.nts.cafe.app.presentation.presenter.PF
 import by.nts.cafe.app.presentation.presenter.tables.TableListPresenter
 import kotlinx.android.synthetic.main.activity_tables.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.design.longSnackbar
+import org.jetbrains.anko.toast
 
 /**
  * Created by Yahor_Fralou on 9/10/2018 5:16 PM.
@@ -75,7 +77,7 @@ class TableListActivity : AppCompatActivity(), ITableListView {
         refreshTables.setOnRefreshListener { presenter.updateTablesList(hallId!!) }
         UIHelper.setupRefreshLayout(refreshTables) // todo move to functions
 
-        presenter = TableListPresenter(this, applicationContext)
+        presenter = PF.instance.getTableListPresenter(this)
         presenter.loadTableList(hallId!!)
     }
 

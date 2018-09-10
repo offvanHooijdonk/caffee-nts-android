@@ -13,7 +13,8 @@ public class OrderItemModel {
     private long id;
     @ColumnInfo(name = "dishId")
     private String dishId;
-    @ForeignKey(entity = DishModel.class, childColumns = "dishId", parentColumns = "id")
+    //@ForeignKey(entity = DishModel.class, childColumns = "dishId", parentColumns = "id")
+    @Ignore
     private DishModel dish;
     @ColumnInfo(name = "orderId")
     private long orderId;

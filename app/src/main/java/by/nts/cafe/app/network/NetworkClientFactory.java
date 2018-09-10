@@ -24,15 +24,8 @@ public class NetworkClientFactory {
         return hallClient;
     }
 
-    public static TableClient getTableClient(Context ctx) {
-        if (tableClient == null) {
-            tableClient = getApi(ctx).create(TableClient.class);
-        }
-        return tableClient;
-    }
-
 // TODO recreate API whenever preference changed?
-    private static Retrofit getApi(Context ctx) {
+    public static Retrofit getApi(Context ctx) {
         if (retrofit == null) {
             String url = PrefHelper.getEndpointHost(ctx) + PrefHelper.getEndpointPath(ctx);
             if (!url.endsWith("/")) url = url + "/";

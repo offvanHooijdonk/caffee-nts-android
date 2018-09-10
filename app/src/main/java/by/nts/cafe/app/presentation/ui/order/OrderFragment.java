@@ -1,6 +1,5 @@
 package by.nts.cafe.app.presentation.ui.order;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,7 +19,7 @@ import butterknife.ButterKnife;
 import by.nts.cafe.app.CafeApp;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.dao.AppDatabase;
-import by.nts.cafe.app.helper.rx.Transformsers;
+import by.nts.cafe.app.helper.rx.Transformers;
 import by.nts.cafe.app.model.db.DishModel;
 import by.nts.cafe.app.model.db.OrderItemModel;
 
@@ -65,7 +64,7 @@ public class OrderFragment extends Fragment implements IOrderView {
     private void iniData() {
         dishList.clear();
         CafeApp.getAppDatabase().orderDao().findByTable(1)
-                .compose(Transformsers.schedulersIOMaybe())
+                .compose(Transformers.schedulersIOMaybe())
                 .subscribe(orderItems -> {
                     dishList.addAll(orderItems.getItems());
                     adapter.notifyDataSetChanged();

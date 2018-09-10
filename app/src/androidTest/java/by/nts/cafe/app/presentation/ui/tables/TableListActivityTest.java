@@ -12,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.dao.TableDao;
+import by.nts.cafe.app.locator.ServiceLocator;
 import by.nts.cafe.app.model.db.TableModel;
 import by.nts.cafe.app.network.TableClient;
 
@@ -56,6 +58,7 @@ public class TableListActivityTest {
                 .when(tableDao).getAll(HALL_ID);
         doReturn(Flowable.just(prepareList()))
                 .when(tableClient).getTables(HALL_ID);*/
+        Mockito.when(ServiceLocator.Companion.getInstance().getTableClient()).thenReturn(tableClient);
 
         Espresso.onView(ViewMatchers.withId(R.id.rvUsers)).check((view, noViewExc) -> {
             RecyclerView.Adapter adapter = ((RecyclerView) view).getAdapter();
