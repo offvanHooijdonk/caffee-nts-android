@@ -2,7 +2,7 @@ package by.nts.cafe.app.presentation.presenter.tables
 
 import android.content.Context
 import by.nts.cafe.app.CafeApp
-import by.nts.cafe.app.helper.rx.Transformsers
+import by.nts.cafe.app.helper.rx.Transformers
 import by.nts.cafe.app.helper.rx.attachTo
 import by.nts.cafe.app.model.db.TableModel
 import by.nts.cafe.app.network.NetworkClientFactory
@@ -18,7 +18,7 @@ class TablesPresenter(var view: ITablesView?, var ctx: Context) {
     fun loadTableList(hallId: String) {
         CafeApp.getAppDatabase().tableDao()
                 .getAll(hallId)
-                .compose(Transformsers.schedulersIOMaybe())
+                .compose(Transformers.schedulersIOFlowable())
                 .subscribe({ list -> this.tablesLoaded(list) }, { th -> view?.handleError(th) })
                 .attachTo(cd)
     }
@@ -30,8 +30,8 @@ class TablesPresenter(var view: ITablesView?, var ctx: Context) {
         view?.showRefreshing(true)
         NetworkClientFactory.getTableClient(ctx).getTables(hallId)
                 .doOnNext { list -> CafeApp.getAppDatabase().tableDao().saveAll(list) }
-                .compose(Transformsers.schedulersIO())
-                .subscribe({list -> this.tablesLoaded(list)}, { th -> view?.handleError(th) })
+                .compose(Transformers.schedulersIO())
+                .subscribe({/*list -> this.tablesLoaded(list)*/}, { th -> view?.handleError(th) }) // must update automatically due to Flowable usage
                 .attachTo(cd)
     }
 

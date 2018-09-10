@@ -12,7 +12,7 @@ import by.nts.cafe.app.model.db.HallModel;
 import by.nts.cafe.app.model.db.OrderModel;
 import by.nts.cafe.app.model.db.TableModel;
 
-@Database(entities = {HallModel.class, OrderModel.class, TableModel.class}, version = 1)
+@Database(entities = {HallModel.class, OrderModel.class, TableModel.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DB_NAME = "cafe-nts-v0.27";
 

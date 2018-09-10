@@ -3,12 +3,8 @@ package by.nts.cafe.app;
 import android.app.Application;
 import android.preference.PreferenceManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import by.nts.cafe.app.dao.AppDatabase;
-import by.nts.cafe.app.helper.rx.Transformsers;
-import by.nts.cafe.app.model.db.HallModel;
+import by.nts.cafe.app.helper.rx.Transformers;
 import io.reactivex.disposables.Disposable;
 
 public class CafeApp extends Application {
@@ -34,7 +30,7 @@ public class CafeApp extends Application {
                         AppDatabase.initTempData(getAppDatabase());
                     }
                 })
-                .compose(Transformsers.schedulersIOMaybe())
+                .compose(Transformers.schedulersIOMaybe())
                 .subscribe();
     }
 

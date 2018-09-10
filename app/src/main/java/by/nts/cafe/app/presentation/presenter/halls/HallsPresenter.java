@@ -3,7 +3,7 @@ package by.nts.cafe.app.presentation.presenter.halls;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import by.nts.cafe.app.helper.rx.Transformsers;
+import by.nts.cafe.app.helper.rx.Transformers;
 import by.nts.cafe.app.network.NetworkClientFactory;
 import by.nts.cafe.app.presentation.presenter.AbstractDisposePresenter;
 import by.nts.cafe.app.presentation.ui.halls.IHallsView;
@@ -24,7 +24,7 @@ public class HallsPresenter extends AbstractDisposePresenter {
     public void loadHalls() {
         addDisposable(
                 getAppDatabase().hallDao().getAll()
-                        .compose(Transformsers.schedulersIOMaybe())
+                        .compose(Transformers.schedulersIOMaybe())
                         .subscribe(view::onHallsLoaded, view::onError)
         );
 
@@ -35,7 +35,7 @@ public class HallsPresenter extends AbstractDisposePresenter {
         addDisposable(
                 NetworkClientFactory.getHallClient(ctx).getHalls()
                         .doOnNext(list -> getAppDatabase().hallDao().saveAll(list))
-                        .compose(Transformsers.schedulersIO())
+                        .compose(Transformers.schedulersIO())
                         .doOnNext(list -> view.showUpdateProcess(false))
                         .subscribe(view::onHallsLoaded, view::onError)
         );

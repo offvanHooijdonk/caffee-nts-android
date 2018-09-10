@@ -8,13 +8,13 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 import by.nts.cafe.app.model.db.TableModel;
-import io.reactivex.Maybe;
+import io.reactivex.Flowable;
 
 @Dao
 public interface TableDao {
 
     @Query("SELECT * FROM tables WHERE hallId = :hallId ORDER BY name")
-    Maybe<List<TableModel>> getAll(String hallId);
+    Flowable<List<TableModel>> getAll(String hallId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveAll(List<TableModel> tableList);
