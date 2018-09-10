@@ -6,10 +6,10 @@ import by.nts.cafe.app.helper.rx.Transformers
 import by.nts.cafe.app.helper.rx.attachTo
 import by.nts.cafe.app.model.db.TableModel
 import by.nts.cafe.app.network.NetworkClientFactory
-import by.nts.cafe.app.presentation.ui.tables.ITablesView
+import by.nts.cafe.app.presentation.ui.tables.ITableListView
 import io.reactivex.disposables.CompositeDisposable
 
-class TablesPresenter(var view: ITablesView?, var ctx: Context) {
+class TableListPresenter(var view: ITableListView?, var ctx: Context) {
     private val cd: CompositeDisposable = CompositeDisposable()
 
     /**

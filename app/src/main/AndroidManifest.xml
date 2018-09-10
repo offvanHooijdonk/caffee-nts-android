@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.PREFERENCE" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.ui.tables.TablesActivity" />
+        <activity android:name=".presentation.ui.tables.TableListActivity" android:label="@string/activity_title_tables"/>
         <activity android:name=".presentation.ui.tables.TableActivity" />
     </application>
 

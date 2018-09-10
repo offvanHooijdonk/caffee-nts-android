@@ -37,5 +37,7 @@
     <string name="hint_dish_amount">Amount</string>
     <string name="error_title_hall_not_picked">No hall picked</string>
     <string name="error_msg_hall_not_picked">Pick a hall to see tables</string>
+    <string name="activity_title_tables">Tables</string>
+    <string name="error_load_data">Error loading data</string>
 
 </resources>

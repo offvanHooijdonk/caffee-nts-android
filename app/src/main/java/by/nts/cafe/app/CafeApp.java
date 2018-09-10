@@ -19,7 +19,7 @@ public class CafeApp extends Application {
         PreferenceManager.setDefaultValues(this, R.xml.pref, false);
         APP_DB = AppDatabase.buildDatabase(getApplicationContext());
 
-        initDBIfEmpty();
+        //initDBIfEmpty();
     }
 
 

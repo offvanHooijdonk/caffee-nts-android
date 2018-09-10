@@ -23,7 +23,7 @@ import by.nts.cafe.app.helper.UIHelper;
 import by.nts.cafe.app.model.db.HallModel;
 import by.nts.cafe.app.presentation.presenter.halls.HallsPresenter;
 import by.nts.cafe.app.presentation.ui.pref.PreferenceActivity;
-import by.nts.cafe.app.presentation.ui.tables.TablesActivity;
+import by.nts.cafe.app.presentation.ui.tables.TableListActivity;
 
 public class HallsActivity extends AppCompatActivity implements IHallsView, HallsAdapter.OnHallClickListener {
     // region declarations
@@ -86,9 +86,9 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
     // region Callbacks
     @Override
     public void onHallClick(HallModel hallModel) {
-        startActivity(new Intent(this, TablesActivity.class)
-                .putExtra(TablesActivity.EXTRA_TABLE_ID, hallModel.getId())
-                .putExtra(TablesActivity.EXTRA_TABLE_TABLE, hallModel.getName())
+        startActivity(new Intent(this, TableListActivity.class)
+                .putExtra(TableListActivity.EXTRA_HALL_ID, hallModel.getId())
+                .putExtra(TableListActivity.EXTRA_HALL_NAME, hallModel.getName())
         );
     }
     // endregion
