@@ -10,14 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import by.nts.cafe.app.CafeApp;
 import by.nts.cafe.app.R;
+import by.nts.cafe.app.dao.AppDatabase;
+import by.nts.cafe.app.helper.rx.Transformsers;
 import by.nts.cafe.app.model.db.DishModel;
+import by.nts.cafe.app.model.db.OrderItemModel;
 
 public class OrderFragment extends Fragment implements IOrderView {
     private static final String TAG_DIALOG_MENU = "dialog_menu";
@@ -27,7 +32,7 @@ public class OrderFragment extends Fragment implements IOrderView {
     @BindView(R.id.txtEmpty)
     TextView txtEmpty;
 
-    private List<DishModel> dishList = new ArrayList<>();
+    private List<OrderItemModel> dishList = new ArrayList<>();
     private OrderAdapter adapter;
 
     @Nullable
@@ -58,11 +63,20 @@ public class OrderFragment extends Fragment implements IOrderView {
 
     @Deprecated
     private void iniData() {
-        dishList.add(new DishModel("1", "Pasta Blah-blah-oza", 12.49f, getString(R.string.fish_dish_descr)));
+        dishList.clear();
+        CafeApp.getAppDatabase().orderDao().findByTable(1)
+                .compose(Transformsers.schedulersIOMaybe())
+                .subscribe(orderItems -> {
+                    dishList.addAll(orderItems.getItems());
+                    adapter.notifyDataSetChanged();
+                }, th -> {
+                    Toast.makeText(getActivity(), th.toString(), Toast.LENGTH_LONG).show();
+                });
+        /*dishList.add(new DishModel("1", "Pasta Blah-blah-oza", 12.49f, getString(R.string.fish_dish_descr)));
         dishList.add(new DishModel("41", "Sauce salsa", 1.00f, getString(R.string.fish_dish_descr)));
         dishList.add(new DishModel("641", "Orange fresh", 2.99f, getString(R.string.fish_dish_descr)));
         dishList.add(new DishModel("971", "Cheese cake strawberry Alberto", 5.20f, getString(R.string.fish_dish_descr)));
         dishList.add(new DishModel("72", "Cappuccino small", 2.00f, getString(R.string.fish_dish_descr)));
-        dishList.add(new DishModel("5", "Cigarettes 'Belomor'", 6.80f, getString(R.string.fish_dish_descr)));
+        dishList.add(new DishModel("5", "Cigarettes 'Belomor'", 6.80f, getString(R.string.fish_dish_descr)));*/
     }
 }

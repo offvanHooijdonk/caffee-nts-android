@@ -2,6 +2,7 @@ package by.nts.cafe.app.model.db;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -11,8 +12,8 @@ public class OrderItemModel {
     @ColumnInfo(name = "id")
     private long id;
     @ColumnInfo(name = "dishId")
-    private long dishId;
-    @Ignore
+    private String dishId;
+    @ForeignKey(entity = DishModel.class, childColumns = "dishId", parentColumns = "id")
     private DishModel dish;
     @ColumnInfo(name = "orderId")
     private long orderId;
@@ -23,6 +24,18 @@ public class OrderItemModel {
     @ColumnInfo(name = "priceTotal")
     private float priceTotal;
 
+    public OrderItemModel() {
+    }
+
+    public OrderItemModel(long id, String dishId, long orderId, float amount, long dateCreated, float priceTotal) {
+        this.id = id;
+        this.dishId = dishId;
+        this.orderId = orderId;
+        this.amount = amount;
+        this.dateCreated = dateCreated;
+        this.priceTotal = priceTotal;
+    }
+
     public long getId() {
         return id;
     }
@@ -31,11 +44,11 @@ public class OrderItemModel {
         this.id = id;
     }
 
-    public long getDishId() {
+    public String getDishId() {
         return dishId;
     }
 
-    public void setDishId(long dishId) {
+    public void setDishId(String dishId) {
         this.dishId = dishId;
     }
 

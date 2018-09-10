@@ -15,16 +15,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.db.DishModel;
+import by.nts.cafe.app.model.db.OrderItemModel;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     @NonNull
     private Context ctx;
     @NonNull
-    private List<DishModel> dishList;
+    private List<OrderItemModel> orderItemList;
 
-    public OrderAdapter(@NonNull Context ctx, @NonNull List<DishModel> dishList) {
+    public OrderAdapter(@NonNull Context ctx, @NonNull List<OrderItemModel> orderItemList) {
         this.ctx = ctx;
-        this.dishList = dishList;
+        this.orderItemList = orderItemList;
     }
 
     @Override
@@ -34,7 +35,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
-        DishModel dish = dishList.get(position);
+        OrderItemModel orderItem = orderItemList.get(position);
+        DishModel dish = orderItem.getDish();
 
         vh.txtDishName.setText(dish.getName());
         vh.txtDishPrice.setText(NumberFormat.getCurrencyInstance().format(dish.getPrice()));
@@ -43,7 +45,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return dishList.size();
+        return orderItemList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

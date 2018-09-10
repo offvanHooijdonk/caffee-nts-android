@@ -20,6 +20,17 @@ public class OrderModel {
     @ColumnInfo(name = "priceTotal")
     private float priceTotal;
 
+    public OrderModel() {
+    }
+
+    public OrderModel(long id, long dateCreated, long tableId, float priceSummary, float priceTotal) {
+        this.id = id;
+        this.dateCreated = dateCreated;
+        this.tableId = tableId;
+        this.priceSummary = priceSummary;
+        this.priceTotal = priceTotal;
+    }
+
     public long getId() {
         return id;
     }
