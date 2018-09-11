@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
  * Created by Yahor_Fralou on 9/11/2018 11:40 AM.
  */
 
-class NetworkClientFactory {
+class NetworkFactory {
     companion object {
         private val url: String by lazy {
             val url: String = getPref().getEndpointHost() + getPref().getEndpointPath()

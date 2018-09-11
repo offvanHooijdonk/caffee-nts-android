@@ -2,8 +2,9 @@ package by.nts.cafe.app.presentation.presenter.tables
 
 import by.nts.cafe.app.CafeApp
 import by.nts.cafe.app.dao.TableDao
-import by.nts.cafe.app.helper.rx.Transformers
 import by.nts.cafe.app.helper.rx.attachTo
+import by.nts.cafe.app.helper.rx.schedulersIOFlowable
+import by.nts.cafe.app.helper.rx.schedulersIOSingle
 import by.nts.cafe.app.model.db.TableModel
 import by.nts.cafe.app.network.TableClient
 import by.nts.cafe.app.presentation.ui.tables.ITableListView
@@ -17,7 +18,7 @@ class TableListPresenter(var view: ITableListView?, var tableDao: TableDao, var 
      */
     fun loadTableList(hallId: String) {
         tableDao.getAll(hallId)
-                .compose(Transformers.schedulersIOFlowable())
+                .compose(schedulersIOFlowable())
                 .doOnNext { view?.showRefreshing(false) }
                 .subscribe({ list -> this.tablesLoaded(list) }, { th -> view?.handleError(th) }) // todo use local method and switch refresh progress off
                 .attachTo(cd)
@@ -31,7 +32,7 @@ class TableListPresenter(var view: ITableListView?, var tableDao: TableDao, var 
 
         tableClient.getTables(hallId)
                 .doOnSuccess { list -> CafeApp.appDatabase.tableDao().saveAll(list) }
-                .compose(Transformers.schedulersIOSingle())
+                .compose(schedulersIOSingle())
                 .subscribe({ /*list -> this.tablesLoaded(list)*/ }, { th -> view?.handleError(th) }) // must update automatically due to Flowable usage
                 .attachTo(cd)
     }

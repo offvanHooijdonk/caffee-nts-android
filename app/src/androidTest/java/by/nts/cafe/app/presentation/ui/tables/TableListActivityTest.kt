@@ -65,6 +65,8 @@ class TableListActivityTest {
         Mockito.`when`(ServiceLocator.instance.getTableClient()).thenReturn(tableClient)
 
         Espresso.onView(ViewMatchers.withId(R.id.rvUsers)).check { view, noViewExc ->
+            if (noViewExc != null) throw noViewExc
+
             val adapter = (view as RecyclerView).adapter
             Assert.assertNotNull(adapter)
             Assert.assertEquals(adapter!!.itemCount.toLong(), 0)

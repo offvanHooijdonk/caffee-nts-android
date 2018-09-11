@@ -17,7 +17,7 @@ import org.jetbrains.anko.design.longSnackbar
 /**
  * Created by Yahor_Fralou on 9/10/2018 5:16 PM.
  */
-class TableListActivity : AppCompatActivity(), ITableListView {
+class TableListActivity : AppCompatActivity(), ITableListView, TablesAdapter.OnTableClickListener {
     companion object {
         const val EXTRA_HALL_ID = "EXTRA_HALL_ID"
         const val EXTRA_HALL_NAME = "EXTRA_HALL_NAME"
@@ -60,12 +60,16 @@ class TableListActivity : AppCompatActivity(), ITableListView {
         longSnackbar(rvTables, getString(R.string.error_load_data))
     }
 
+    override fun onTableClick(tableModel: TableModel) {
+        startActivity(Intent(this, TableActivity::class.java))
+    }
+
     override fun showRefreshing(isShow: Boolean) {
         refreshTables.isRefreshing = isShow
     }
 
     private fun initList() {
-        adapter = TablesAdapter(this, tableList, TablesAdapter.OnTableClickListener { tableModel -> onTableClick(tableModel) })
+        adapter = TablesAdapter(this, tableList, this)
         rvTables.adapter = adapter
         rvTables.layoutManager = GridLayoutManager(this, 3) // TODO make number configurable/adaptive
 
@@ -84,10 +88,6 @@ class TableListActivity : AppCompatActivity(), ITableListView {
 
     private fun showEmptyListView(isShow: Boolean) {
         // todo
-    }
-
-    private fun onTableClick(tableModel: TableModel) {
-        startActivity(Intent(this, TableActivity::class.java))
     }
 
     private fun showNoHall() {

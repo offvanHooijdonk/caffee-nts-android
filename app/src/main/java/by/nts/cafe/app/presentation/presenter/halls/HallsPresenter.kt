@@ -2,8 +2,9 @@ package by.nts.cafe.app.presentation.presenter.halls
 
 import by.nts.cafe.app.CafeApp
 import by.nts.cafe.app.dao.HallDao
-import by.nts.cafe.app.helper.rx.Transformers
 import by.nts.cafe.app.helper.rx.attachTo
+import by.nts.cafe.app.helper.rx.schedulersIOFlowable
+import by.nts.cafe.app.helper.rx.schedulersIOSingle
 import by.nts.cafe.app.locator.locateService
 import by.nts.cafe.app.model.db.HallModel
 import by.nts.cafe.app.network.HallClient
@@ -15,7 +16,7 @@ class HallsPresenter(private var view: IHallsView?, private val hallClient: Hall
 
     fun loadHalls() {
         CafeApp.appDatabase.hallDao().all
-                .compose<List<HallModel>>(Transformers.schedulersIOFlowable<List<HallModel>>())
+                .compose<List<HallModel>>(schedulersIOFlowable<List<HallModel>>())
                 .doOnNext { view!!.showUpdateProcess(false) }
                 .subscribe({ view!!.onHallsLoaded(it) }, { view!!.onError(it) })
                 .attachTo(cd)
@@ -26,7 +27,7 @@ class HallsPresenter(private var view: IHallsView?, private val hallClient: Hall
 
         locateService(HallClient::class.java).halls
                 .doOnSuccess { list -> CafeApp.appDatabase.hallDao().saveAll(list) }
-                .compose<List<HallModel>>(Transformers.schedulersIOSingle<List<HallModel>>())
+                .compose<List<HallModel>>(schedulersIOSingle<List<HallModel>>())
                 .subscribe({ view?.onHallsLoaded(it) }, { view?.onError(it) })
                 .attachTo(cd)
     }

@@ -5,7 +5,7 @@ import by.nts.cafe.app.CafeApp
 import by.nts.cafe.app.dao.HallDao
 import by.nts.cafe.app.dao.TableDao
 import by.nts.cafe.app.network.HallClient
-import by.nts.cafe.app.network.NetworkClientFactory
+import by.nts.cafe.app.network.NetworkFactory
 import by.nts.cafe.app.network.TableClient
 
 class ServiceLocator private constructor() {
@@ -28,7 +28,7 @@ class ServiceLocator private constructor() {
 
 
     fun getTableClient(): TableClient = locate(TableClient::class.java) { // todo try 'internal' when tests are in kotlin
-        NetworkClientFactory.retrofit.create(TableClient::class.java)
+        NetworkFactory.retrofit.create(TableClient::class.java)
     }
 
     fun getHallDao(): HallDao = locate(HallDao::class.java) {
@@ -36,7 +36,7 @@ class ServiceLocator private constructor() {
     }
 
     fun getHallClient(): HallClient = locate(HallClient::class.java) {
-        NetworkClientFactory.retrofit.create(HallClient::class.java)
+        NetworkFactory.retrofit.create(HallClient::class.java)
     }
 
     private fun <T: Any> locate(clazz: Class<T>, init: () -> T): T =

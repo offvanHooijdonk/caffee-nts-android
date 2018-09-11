@@ -4,11 +4,19 @@ import android.app.Application
 import android.preference.PreferenceManager
 import by.nts.cafe.app.dao.AppDatabase
 import by.nts.cafe.app.helper.rx.Transformers
+import by.nts.cafe.app.helper.rx.attachTo
 import by.nts.cafe.app.locator.ServiceLocator
 import by.nts.cafe.app.model.db.HallModel
 import by.nts.cafe.app.presentation.presenter.PresenterFactory
+import io.reactivex.disposables.CompositeDisposable
 
 class CafeApp : Application() {
+    companion object {
+        const val LOG = "cafe-nts-log"
+
+        lateinit var appDatabase: AppDatabase
+            private set
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -23,23 +31,17 @@ class CafeApp : Application() {
         initDBIfEmpty();
     }
 
-
     private fun initDBIfEmpty() {
-        val d = appDatabase.hallDao().all
-                .doOnSuccess { list ->
+        val compositeDisposable = CompositeDisposable()
+        ServiceLocator.instance.getHallDao().all
+                .doOnNext { list ->
                     if (list.isEmpty()) {
                         AppDatabase.initTempData(appDatabase)
                     }
                 }
-                .compose<List<HallModel>>(Transformers.schedulersIOMaybe<List<HallModel>>())
-                .subscribe()
-    }
-
-    companion object {
-        const val LOG = "cafe-nts-log"
-
-        lateinit var appDatabase: AppDatabase// = null
-            private set
+                .compose<List<HallModel>>(Transformers.schedulersIOFlowable<List<HallModel>>())
+                .subscribe { compositeDisposable.dispose() }
+                .attachTo(compositeDisposable)
     }
 
 }
