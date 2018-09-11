@@ -19,7 +19,7 @@ import by.nts.cafe.app.R;
 import by.nts.cafe.app.model.db.UserModel;
 import by.nts.cafe.app.presentation.ui.halls.HallsActivity;
 
-public class LoginActivity extends AppCompatActivity implements UsersAdapter.OnUserClickListener {
+public class LoginActivity extends AppCompatActivity implements ILoginView, UsersAdapter.OnUserClickListener {
     @BindView(R.id.rvUsers)
     RecyclerView rvUsers;
     @BindView(R.id.rflUsers)
