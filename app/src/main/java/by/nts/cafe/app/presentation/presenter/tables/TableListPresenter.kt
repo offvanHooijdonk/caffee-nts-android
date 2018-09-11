@@ -20,7 +20,7 @@ class TableListPresenter(var view: ITableListView?, var tableDao: TableDao, var 
     fun loadTableList(hallId: String) {
         tableDao.getAll(hallId)
                 .compose(Transformers.schedulersIOFlowable())
-                .subscribe({ list -> this.tablesLoaded(list) }, { th -> view?.handleError(th) })
+                .subscribe({ list -> this.tablesLoaded(list) }, { th -> view?.handleError(th) }) // todo use local method and switch refresh progress off
                 .attachTo(cd)
     }
 
