@@ -62,13 +62,10 @@ public class LoginActivity extends AppCompatActivity implements UsersAdapter.OnU
 
     private void initRefreshLayout() {
         rflUsers.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2, R.color.refresh_3);
-        rflUsers.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                userList.add(new UserModel(String.valueOf("Sample User".hashCode()), "Sample User"));
-                adapter.notifyDataSetChanged();
-                rflUsers.setRefreshing(false);
-            }
+        rflUsers.setOnRefreshListener(() -> {
+            userList.add(new UserModel(String.valueOf("Sample User".hashCode()), "Sample User"));
+            adapter.notifyDataSetChanged();
+            rflUsers.setRefreshing(false);
         });
     }
 
