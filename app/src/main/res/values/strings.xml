@@ -13,6 +13,8 @@
     <string name="pref_path_key" translatable="false">pref_path</string>
     <string name="pref_path_title">Root path for services</string>
     <string name="pref_path_default_value" translatable="false">/cafe-nts-rest/rest/</string>
+    <string name="pref_create_stub_db_key" translatable="false">pref_create_stub_db_key</string>
+
     <string name="item_settings">Settings</string>
     <string name="item_sign_off">Sign off</string>
 

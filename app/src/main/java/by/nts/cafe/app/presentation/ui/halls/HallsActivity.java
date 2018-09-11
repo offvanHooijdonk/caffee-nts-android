@@ -21,6 +21,7 @@ import by.nts.cafe.app.CafeApp;
 import by.nts.cafe.app.R;
 import by.nts.cafe.app.helper.UIHelper;
 import by.nts.cafe.app.model.db.HallModel;
+import by.nts.cafe.app.presentation.presenter.PresenterFactory;
 import by.nts.cafe.app.presentation.presenter.halls.HallsPresenter;
 import by.nts.cafe.app.presentation.ui.pref.PreferenceActivity;
 import by.nts.cafe.app.presentation.ui.tables.TableListActivity;
@@ -44,7 +45,7 @@ public class HallsActivity extends AppCompatActivity implements IHallsView, Hall
         setContentView(R.layout.activity_halls);
         ButterKnife.bind(this);
 
-        presenter = new HallsPresenter(this, getApplicationContext());
+        presenter = PresenterFactory.Companion.getInstance().getHallsPresenter(this);
         adapter = new HallsAdapter(this, hallList, this);
         rvHalls.setAdapter(adapter);
         rvHalls.setLayoutManager(new GridLayoutManager(this, 4)); // TODO remove magic number

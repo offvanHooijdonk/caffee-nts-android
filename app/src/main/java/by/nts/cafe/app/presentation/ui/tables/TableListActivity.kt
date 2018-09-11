@@ -13,7 +13,6 @@ import by.nts.cafe.app.presentation.presenter.tables.TableListPresenter
 import kotlinx.android.synthetic.main.activity_tables.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.design.longSnackbar
-import org.jetbrains.anko.toast
 
 /**
  * Created by Yahor_Fralou on 9/10/2018 5:16 PM.
@@ -41,7 +40,11 @@ class TableListActivity : AppCompatActivity(), ITableListView {
             initTitle()
             initList()
         }
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
 
     override fun onTablesLoaded(list: List<TableModel>) {
@@ -59,14 +62,6 @@ class TableListActivity : AppCompatActivity(), ITableListView {
 
     override fun showRefreshing(isShow: Boolean) {
         refreshTables.isRefreshing = isShow
-    }
-
-    private fun showEmptyListView(isShow: Boolean) {
-        // todo
-    }
-
-    private fun onTableClick(tableModel: TableModel) {
-        startActivity(Intent(this, TableActivity::class.java))
     }
 
     private fun initList() {
@@ -87,10 +82,18 @@ class TableListActivity : AppCompatActivity(), ITableListView {
         actionBar?.title = hallName ?: getString(R.string.activity_title_tables)
     }
 
+    private fun showEmptyListView(isShow: Boolean) {
+        // todo
+    }
+
+    private fun onTableClick(tableModel: TableModel) {
+        startActivity(Intent(this, TableActivity::class.java))
+    }
+
     private fun showNoHall() {
         alert {
             titleResource = R.string.error_title_hall_not_picked
-            messageResource = R.string.error_title_hall_not_picked
+            messageResource = R.string.error_msg_hall_not_picked
             positiveButton(android.R.string.ok, onClicked = { it.dismiss() })
             isCancelable = true
         }.show()

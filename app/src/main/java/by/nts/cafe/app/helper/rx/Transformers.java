@@ -3,6 +3,7 @@ package by.nts.cafe.app.helper.rx;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.MaybeTransformer;
 import io.reactivex.ObservableTransformer;
+import io.reactivex.SingleTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -19,6 +20,10 @@ public class Transformers {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
 
+    private static SingleTransformer<?, ?> singleTransformer = single -> single
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+
     @SuppressWarnings("unchecked")
     public static <T> ObservableTransformer<T, T> schedulersIO() {
         return (ObservableTransformer<T, T>) transformer;
@@ -32,5 +37,10 @@ public class Transformers {
     @SuppressWarnings("unchecked")
     public static <T> FlowableTransformer<T, T> schedulersIOFlowable() {
         return (FlowableTransformer<T, T>) flowableTransformer;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> SingleTransformer<T, T> schedulersIOSingle() {
+        return (SingleTransformer<T, T>) singleTransformer;
     }
 }
