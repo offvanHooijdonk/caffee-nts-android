@@ -20,7 +20,7 @@ class CafeApp : Application() {
 
         PresenterFactory.instance.setContext(applicationContext)
         ServiceLocator.instance.setContext(applicationContext)
-        //initDBIfEmpty();
+        initDBIfEmpty();
     }
 
 

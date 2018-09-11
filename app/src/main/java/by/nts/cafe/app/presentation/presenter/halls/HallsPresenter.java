@@ -8,7 +8,7 @@ import by.nts.cafe.app.network.NetworkClientFactory;
 import by.nts.cafe.app.presentation.presenter.AbstractDisposePresenter;
 import by.nts.cafe.app.presentation.ui.halls.IHallsView;
 
-import static by.nts.cafe.app.CafeApp.getAppDatabase;
+import by.nts.cafe.app.CafeApp;
 
 public class HallsPresenter extends AbstractDisposePresenter {
 
@@ -23,7 +23,7 @@ public class HallsPresenter extends AbstractDisposePresenter {
 
     public void loadHalls() {
         addDisposable(
-                getAppDatabase().hallDao().getAll()
+                CafeApp.Companion.getAppDatabase().hallDao().getAll()
                         .compose(Transformers.schedulersIOMaybe())
                         .subscribe(view::onHallsLoaded, view::onError)
         );
@@ -34,7 +34,7 @@ public class HallsPresenter extends AbstractDisposePresenter {
         view.showUpdateProcess(true);
         addDisposable(
                 NetworkClientFactory.getHallClient(ctx).getHalls()
-                        .doOnNext(list -> getAppDatabase().hallDao().saveAll(list))
+                        .doOnNext(list -> CafeApp.Companion.getAppDatabase().hallDao().saveAll(list))
                         .compose(Transformers.schedulersIO())
                         .doOnNext(list -> view.showUpdateProcess(false))
                         .subscribe(view::onHallsLoaded, view::onError)

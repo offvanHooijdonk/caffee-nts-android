@@ -63,7 +63,7 @@ public class OrderFragment extends Fragment implements IOrderView {
     @Deprecated
     private void iniData() {
         dishList.clear();
-        CafeApp.getAppDatabase().orderDao().findByTable(1)
+        CafeApp.Companion.getAppDatabase().orderDao().findByTable(1)
                 .compose(Transformers.schedulersIOMaybe())
                 .subscribe(orderItems -> {
                     dishList.addAll(orderItems.getItems());
