@@ -17,7 +17,7 @@ import org.jetbrains.anko.design.longSnackbar
 /**
  * Created by Yahor_Fralou on 9/10/2018 5:16 PM.
  */
-class TableListActivity : AppCompatActivity(), ITableListView, TablesAdapter.OnTableClickListener {
+class TableListActivity : AppCompatActivity(), ITableListView {
     companion object {
         const val EXTRA_HALL_ID = "EXTRA_HALL_ID"
         const val EXTRA_HALL_NAME = "EXTRA_HALL_NAME"
@@ -25,12 +25,14 @@ class TableListActivity : AppCompatActivity(), ITableListView, TablesAdapter.OnT
 
     private var hallId: String? = null
     private lateinit var adapter: TablesAdapter
-    private var tableList = mutableListOf<TableModel>()
+    private val tableList = mutableListOf<TableModel>()
     private lateinit var presenter: TableListPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tables)
+
+        presenter = PF.instance.getTableListPresenter(this)
 
         hallId = intent.getStringExtra(EXTRA_HALL_ID)
 
@@ -60,7 +62,7 @@ class TableListActivity : AppCompatActivity(), ITableListView, TablesAdapter.OnT
         longSnackbar(rvTables, getString(R.string.error_load_data))
     }
 
-    override fun onTableClick(tableModel: TableModel) {
+    private fun onTablePicked(tableModel: TableModel) {
         startActivity(Intent(this, TableActivity::class.java))
     }
 
@@ -69,14 +71,13 @@ class TableListActivity : AppCompatActivity(), ITableListView, TablesAdapter.OnT
     }
 
     private fun initList() {
-        adapter = TablesAdapter(this, tableList, this)
+        adapter = TablesAdapter(this, tableList, this::onTablePicked)
         rvTables.adapter = adapter
         rvTables.layoutManager = GridLayoutManager(this, 3) // TODO make number configurable/adaptive
 
         refreshTables.setOnRefreshListener { presenter.updateTablesList(hallId!!) }
         UIHelper.setupRefreshLayout(refreshTables) // todo move to functions
 
-        presenter = PF.instance.getTableListPresenter(this)
         presenter.loadTableList(hallId!!)
     }
 

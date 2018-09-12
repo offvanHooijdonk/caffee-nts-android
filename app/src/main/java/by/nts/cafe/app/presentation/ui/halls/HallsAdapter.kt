@@ -9,7 +9,7 @@ import by.nts.cafe.app.R
 import by.nts.cafe.app.model.db.HallModel
 import kotlinx.android.synthetic.main.item_hall.view.*
 
-class HallsAdapter(private val ctx: Context, private val halls: List<HallModel>, private val listener: OnHallClickListener?) : RecyclerView.Adapter<HallsAdapter.ViewHolder>() {
+class HallsAdapter(private val ctx: Context, private val halls: List<HallModel>, private val listener: (HallModel) -> Unit) : RecyclerView.Adapter<HallsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(ctx).inflate(R.layout.item_hall, parent, false)
@@ -20,7 +20,7 @@ class HallsAdapter(private val ctx: Context, private val halls: List<HallModel>,
         val hall = halls[position]
 
         vh.itemView.txtHallName.text = hall.name
-        vh.itemView.cardRoot.setOnClickListener { _ -> listener?.onHallClick(hall) }
+        vh.itemView.cardRoot.setOnClickListener { _ -> listener(hall) }
     }
 
     override fun getItemCount(): Int {
@@ -29,7 +29,4 @@ class HallsAdapter(private val ctx: Context, private val halls: List<HallModel>,
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    interface OnHallClickListener {
-        fun onHallClick(hallModel: HallModel)
-    }
 }

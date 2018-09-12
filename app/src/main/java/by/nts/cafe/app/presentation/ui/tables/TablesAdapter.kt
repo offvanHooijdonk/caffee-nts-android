@@ -10,7 +10,7 @@ import by.nts.cafe.app.helper.UIHelper
 import by.nts.cafe.app.model.db.TableModel
 import kotlinx.android.synthetic.main.item_table.view.*
 
-class TablesAdapter(private val ctx: Context, private val tables: List<TableModel>, private val listener: OnTableClickListener?) : RecyclerView.Adapter<TablesAdapter.ViewHolder>() {
+class TablesAdapter(private val ctx: Context, private val tables: List<TableModel>, private val listener: (TableModel) -> Unit) : RecyclerView.Adapter<TablesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(ctx).inflate(R.layout.item_table, parent, false)
@@ -27,7 +27,7 @@ class TablesAdapter(private val ctx: Context, private val tables: List<TableMode
                     UIHelper.getTableStatusColorRes(table.status)!!
             ))
 
-            cardRoot!!.setOnClickListener { _ -> listener?.onTableClick(table) }
+            cardRoot!!.setOnClickListener { _ -> listener(table) }
         }
     }
 
@@ -37,7 +37,4 @@ class TablesAdapter(private val ctx: Context, private val tables: List<TableMode
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    interface OnTableClickListener {
-        fun onTableClick(tableModel: TableModel)
-    }
 }

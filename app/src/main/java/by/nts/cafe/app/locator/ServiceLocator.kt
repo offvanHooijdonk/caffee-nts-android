@@ -8,7 +8,7 @@ import by.nts.cafe.app.network.HallClient
 import by.nts.cafe.app.network.NetworkFactory
 import by.nts.cafe.app.network.TableClient
 
-class ServiceLocator private constructor() {
+open class ServiceLocator private constructor() : IServiceLocator {
     companion object {
         val instance by lazy { ServiceLocator() }
     }
@@ -22,24 +22,24 @@ class ServiceLocator private constructor() {
 
     internal fun getContext() = ctx
 
-    fun getTableDao(): TableDao = locate(TableDao::class.java) {
+    override fun getTableDao(): TableDao = locate(TableDao::class.java) {
         CafeApp.appDatabase.tableDao()
     }
 
 
-    fun getTableClient(): TableClient = locate(TableClient::class.java) { // todo try 'internal' when tests are in kotlin
+    override fun getTableClient(): TableClient = locate(TableClient::class.java) {
         NetworkFactory.retrofit.create(TableClient::class.java)
     }
 
-    fun getHallDao(): HallDao = locate(HallDao::class.java) {
+    override fun getHallDao(): HallDao = locate(HallDao::class.java) {
         CafeApp.appDatabase.hallDao()
     }
 
-    fun getHallClient(): HallClient = locate(HallClient::class.java) {
+    override fun getHallClient(): HallClient = locate(HallClient::class.java) {
         NetworkFactory.retrofit.create(HallClient::class.java)
     }
 
-    private fun <T: Any> locate(clazz: Class<T>, init: () -> T): T =
+    private fun <T : Any> locate(clazz: Class<T>, init: () -> T): T =
             serviceMap.getOrPut(key(clazz), init) as T
 
     private fun <T> key(clazz: Class<T>) = clazz.name

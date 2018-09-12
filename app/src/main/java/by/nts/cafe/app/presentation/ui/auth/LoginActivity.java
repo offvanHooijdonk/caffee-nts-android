@@ -16,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.R;
+import by.nts.cafe.app.helper.UIHelper;
 import by.nts.cafe.app.model.db.UserModel;
 import by.nts.cafe.app.presentation.ui.halls.HallsActivity;
 
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, User
         rvUsers.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvUsers.setAdapter(adapter);
 
+        UIHelper.setupRefreshLayout(rflUsers);
         initRefreshLayout();
     }
 
@@ -61,7 +63,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, User
     }
 
     private void initRefreshLayout() {
-        rflUsers.setColorSchemeResources(R.color.refresh_1, R.color.refresh_2, R.color.refresh_3);
         rflUsers.setOnRefreshListener(() -> {
             userList.add(new UserModel(String.valueOf("Sample User".hashCode()), "Sample User"));
             adapter.notifyDataSetChanged();

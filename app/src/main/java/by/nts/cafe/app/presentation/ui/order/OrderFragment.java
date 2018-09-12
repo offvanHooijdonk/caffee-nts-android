@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.nts.cafe.app.CafeApp;
 import by.nts.cafe.app.R;
-import by.nts.cafe.app.helper.rx.Transformers;
+import by.nts.cafe.app.helper.rx.TransformersKt;
 import by.nts.cafe.app.model.db.OrderItemModel;
 
 public class OrderFragment extends Fragment implements IOrderView {
@@ -62,7 +62,7 @@ public class OrderFragment extends Fragment implements IOrderView {
     private void iniData() {
         dishList.clear();
         CafeApp.Companion.getAppDatabase().orderDao().findByTable(1)
-                .compose(Transformers.INSTANCE.schedulersIOMaybe())
+                .compose(TransformersKt.schedulersIOMaybe())
                 .subscribe(orderItems -> {
                     dishList.addAll(orderItems.getItems());
                     adapter.notifyDataSetChanged();

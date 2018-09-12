@@ -3,8 +3,8 @@ package by.nts.cafe.app
 import android.app.Application
 import android.preference.PreferenceManager
 import by.nts.cafe.app.dao.AppDatabase
-import by.nts.cafe.app.helper.rx.Transformers
 import by.nts.cafe.app.helper.rx.attachTo
+import by.nts.cafe.app.helper.rx.schedulersIOFlowable
 import by.nts.cafe.app.locator.ServiceLocator
 import by.nts.cafe.app.model.db.HallModel
 import by.nts.cafe.app.presentation.presenter.PresenterFactory
@@ -39,7 +39,7 @@ class CafeApp : Application() {
                         AppDatabase.initTempData(appDatabase)
                     }
                 }
-                .compose<List<HallModel>>(Transformers.schedulersIOFlowable<List<HallModel>>())
+                .compose<List<HallModel>>(schedulersIOFlowable<List<HallModel>>())
                 .subscribe { compositeDisposable.dispose() }
                 .attachTo(compositeDisposable)
     }

@@ -12,5 +12,5 @@ class TypeConverter {
     fun fromTableStatus(status: TableModel.STATUS) = status.code
 
     @TypeConverter
-    fun toTableStatus(code: Int) = TableModel.STATUS.fromCode(code)
+    fun toTableStatus(code: Int): TableModel.STATUS = TableModel.STATUS.fromCode(code)
 }

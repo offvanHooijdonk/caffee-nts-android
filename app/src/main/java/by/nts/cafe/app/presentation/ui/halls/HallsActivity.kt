@@ -19,7 +19,7 @@ import by.nts.cafe.app.presentation.ui.tables.TableListActivity
 import kotlinx.android.synthetic.main.activity_halls.*
 import java.util.*
 
-class HallsActivity : AppCompatActivity(), IHallsView, HallsAdapter.OnHallClickListener {
+class HallsActivity : AppCompatActivity(), IHallsView {
     // region declarations
     private lateinit var presenter: HallsPresenter
 
@@ -32,12 +32,12 @@ class HallsActivity : AppCompatActivity(), IHallsView, HallsAdapter.OnHallClickL
         setContentView(R.layout.activity_halls)
 
         presenter = PresenterFactory.instance.getHallsPresenter(this)
-        adapter = HallsAdapter(this, hallList, this)
-        rvHalls!!.adapter = adapter
-        rvHalls!!.layoutManager = GridLayoutManager(this, 4) // TODO remove magic number
+        adapter = HallsAdapter(this, hallList, this::onHallPicked)
+        rvHalls.adapter = adapter
+        rvHalls.layoutManager = GridLayoutManager(this, 4) // TODO remove magic number
 
-        UIHelper.setupRefreshLayout(rflHalls!!)
-        rflHalls!!.setOnRefreshListener { presenter.updateHalls() }
+        UIHelper.setupRefreshLayout(rflHalls)
+        rflHalls.setOnRefreshListener { presenter.updateHalls() }
     }
 
     override fun onStart() {
@@ -67,7 +67,7 @@ class HallsActivity : AppCompatActivity(), IHallsView, HallsAdapter.OnHallClickL
     //endregion
 
     // region Callbacks
-    override fun onHallClick(hallModel: HallModel) {
+    private fun onHallPicked(hallModel: HallModel) {
         startActivity(Intent(this, TableListActivity::class.java)
                 .putExtra(TableListActivity.EXTRA_HALL_ID, hallModel.id)
                 .putExtra(TableListActivity.EXTRA_HALL_NAME, hallModel.name)
