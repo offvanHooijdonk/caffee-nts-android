@@ -7,7 +7,6 @@ import android.support.test.rule.ActivityTestRule
 import android.support.v7.widget.RecyclerView
 import by.nts.cafe.app.R
 import by.nts.cafe.app.dao.TableDao
-import by.nts.cafe.app.locator.IServiceLocator
 import by.nts.cafe.app.model.db.TableModel
 import by.nts.cafe.app.network.TableClient
 import org.junit.Assert
@@ -16,7 +15,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.doReturn
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -38,8 +36,6 @@ class TableListActivityTest {
     lateinit var tableDao: TableDao
     @Mock
     lateinit var tableClient: TableClient
-    @Mock
-    lateinit var serviceLocator: IServiceLocator
     /*@Mock
     private lateinit var presenterFactory: PresenterFactory*/
 
@@ -49,8 +45,6 @@ class TableListActivityTest {
         override fun getActivityIntent() = Intent().apply { putExtra(TableListActivity.EXTRA_HALL_ID, HALL_ID) }
     }*/
 
-    //private TableListActivity activity;
-
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -58,12 +52,6 @@ class TableListActivityTest {
 
     @Test()
     fun testUsersUpdate() {
-        /*doReturn(Flowable.just(prepareList()))
-                .`when`(tableClient).getTables(HALL_ID)*/
-        doReturn(tableClient).`when`(serviceLocator).getTableClient()
-        doReturn(tableDao).`when`(serviceLocator).getTableDao()
-
-        //doReturn(Flowable.just(listOf<TableModel>())).`when`(tableDao).getAll(HALL_ID)
 
         startTableListActivity()
 
@@ -72,7 +60,7 @@ class TableListActivityTest {
 
             val adapter = (view as RecyclerView).adapter
             Assert.assertNotNull(adapter)
-            Assert.assertEquals(0, adapter!!.itemCount.toLong())
+            Assert.assertEquals(2, adapter!!.itemCount.toLong())
         }
     }
 

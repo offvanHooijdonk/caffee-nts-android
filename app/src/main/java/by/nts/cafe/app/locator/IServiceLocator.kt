@@ -1,5 +1,6 @@
 package by.nts.cafe.app.locator
 
+import android.content.Context
 import by.nts.cafe.app.dao.HallDao
 import by.nts.cafe.app.dao.TableDao
 import by.nts.cafe.app.network.HallClient
@@ -13,4 +14,6 @@ interface IServiceLocator {
     fun getTableClient(): TableClient
     fun getHallDao(): HallDao
     fun getHallClient(): HallClient
+    fun getContext(): Context
+    fun setContext(context: Context)
 }

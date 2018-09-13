@@ -7,20 +7,21 @@ import by.nts.cafe.app.dao.TableDao
 import by.nts.cafe.app.network.HallClient
 import by.nts.cafe.app.network.NetworkFactory
 import by.nts.cafe.app.network.TableClient
+import kotlin.reflect.KProperty
 
 open class ServiceLocator private constructor() : IServiceLocator {
     companion object {
-        val instance by lazy { ServiceLocator() }
+        var instance : IServiceLocator by lazy { ServiceLocator() }
     }
 
     private lateinit var ctx: Context;
     private val serviceMap = mutableMapOf<String, Any>()
 
-    fun setContext(context: Context) {
+    override fun setContext(context: Context) {
         ctx = context
     }
 
-    internal fun getContext() = ctx
+    override fun getContext() = ctx
 
     override fun getTableDao(): TableDao = locate(TableDao::class.java) {
         CafeApp.appDatabase.tableDao()
@@ -43,5 +44,9 @@ open class ServiceLocator private constructor() : IServiceLocator {
             serviceMap.getOrPut(key(clazz), init) as T
 
     private fun <T> key(clazz: Class<T>) = clazz.name
+
+}
+
+operator fun <T> Lazy<T>.setValue(companion: ServiceLocator.Companion, property: KProperty<*>, serviceLocator: IServiceLocator) {
 
 }
