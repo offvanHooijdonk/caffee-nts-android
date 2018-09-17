@@ -8,5 +8,5 @@ import io.reactivex.disposables.Disposable
  */
 
 fun Disposable.attachTo(cd: CompositeDisposable) {
-    cd.add(this);
+    cd.add(this)
 }

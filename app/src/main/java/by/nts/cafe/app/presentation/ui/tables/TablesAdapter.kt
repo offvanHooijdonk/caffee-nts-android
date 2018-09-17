@@ -21,9 +21,9 @@ class TablesAdapter(private val ctx: Context, private val tables: List<TableMode
         val table = tables[position]
 
         with (vh.itemView) {
-            txtTableName!!.text = table.name
-            txtTableStatus!!.setText(UIHelper.getTableStatusTitleRes(table.status)!!)
-            txtTableStatus!!.setTextColor(ctx.resources.getColor(
+            txtTableName.text = table.name
+            txtTableStatus.setText(UIHelper.getTableStatusTitleRes(table.status)!!)
+            txtTableStatus.setTextColor(ctx.resources.getColor(
                     UIHelper.getTableStatusColorRes(table.status)!!
             ))
 
