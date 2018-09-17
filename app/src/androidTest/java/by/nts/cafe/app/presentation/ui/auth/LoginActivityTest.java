@@ -17,7 +17,7 @@ public class LoginActivityTest {
 
     @Test
     public void onUserClicked() {
-        int itemsCount = rule.getActivity().rvUsers.getAdapter().getItemCount();
+        int itemsCount = rule.getActivity().getRvUsers().getAdapter().getItemCount();
         Assert.assertTrue("Expected users > 0, found: " + itemsCount, itemsCount > 0);
     }
 }
